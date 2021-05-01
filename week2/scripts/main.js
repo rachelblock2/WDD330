@@ -68,9 +68,6 @@ Number.isNaN(NaN);
 Number.isNaN(5);
 //false
 
-const question = "What is Superman's real name?"
-const answer = prompt(question);
-alert(`You answered ${answer}`);
 
 // Object Practice
 
@@ -154,7 +151,7 @@ myArray.pop // Removes last item
 myArray.shift //Removes first item
 myArray.push //Adds new item on end
 myArray.unshift //Adds new item on beginning
-myArray = myArray.concat(['Hulk','Hawkeye', 'Black Widow']); //Reassigns array with additional values
+myArray.concat(['Hulk','Hawkeye', 'Black Widow']); //Reassigns array with additional values
 myArray = [ ...myArray, ...['Hulk','Hawkeye', 'Black Widow'] ];
 myArray.join();
 myArray.slice(2,4) //Starts at index 2 and finishes at fourth (fourth index not included), non-destructive
@@ -292,40 +289,40 @@ moreNumbers.filter(x => !x) //Finds all falsy values
 
 // Final update of current book quiz
 
-const quiz = [
-    [`What is Superman's real name?`, `Clark Kent`]
-    [`What is Wonder Woman's real name?`, `Diana Prince`]
-    [`What is Batman's real name?`, `Bruce Wayne`]
-]
+// const quiz = [
+//     [`What is Superman's real name?`, `Clark Kent`]
+//     [`What is Wonder Woman's real name?`, `Diana Prince`]
+//     [`What is Batman's real name?`, `Bruce Wayne`]
+// ]
 
-function start(quiz) {
-    let score = 0
+// function start(quiz) {
+//     let score = 0
 
-    for (const [question, answer] of quiz) {
-        const response = ask(question)
-        check(response, answer);
-    }
-    // End of main game loop
+//     for (const [question, answer] of quiz) {
+//         const response = ask(question)
+//         check(response, answer);
+//     }
+//     // End of main game loop
 
-    gameOver();
+//     gameOver();
 
-    // Function declarations
-    function ask(question){
-        return prompt(question);
-    }
+//     // Function declarations
+//     function ask(question){
+//         return prompt(question);
+//     }
 
-    function check(response, answer) {
-        if (response === answer) {
-            alert(`Correct`)
-            score++
-        } else {
-            alert(`Wrong! The correct answer was ${answer}.`)
-        }
-    }
+//     function check(response, answer) {
+//         if (response === answer) {
+//             alert(`Correct`)
+//             score++
+//         } else {
+//             alert(`Wrong! The correct answer was ${answer}.`)
+//         }
+//     }
 
-    function gameOver() {
-        alert(`Game Over, you scored ${score} point${score !== 1 ? 's' : ''}`);
-    }
-}
+//     function gameOver() {
+//         alert(`Game Over, you scored ${score} point${score !== 1 ? 's' : ''}`);
+//     }
+// }
 
-start(quiz);
+// start(quiz);
