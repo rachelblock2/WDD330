@@ -226,3 +226,108 @@ function sayParams (...args) {
   }
   const boundFunc = sayParams.bind(null, 1, 2, 3, 4, 5)
   boundFunc()
+
+
+
+// Chapter 5: Objects in Javascript
+
+// Object literal, create objects quickly without creating a class, can also contain nested objects
+// Objects ARE assigned by reference, if an object is created as a "clone" of the first object, any
+// changes to the duplicate WILL effect the first
+const superman = {
+    name: 'Superman',
+    'real name': 'Clark Kent', //Quoted since there's a space, use camelcase or underscore instead
+    height: 75,
+    weight: 235,
+    hero: true,
+    villan: false,
+    allies: ['Batman', 'Supergirl'],
+
+    fly() {
+      return 'Up, up and away.'
+    }
+}
+
+const heroName = 'Iron Man';
+const realName = 'Tony Stark';
+
+//short ES6 way
+const ironMan = {heroName, realName}
+
+// Can use . notation or [''] notation to access properties or methods of an object
+superman['real' + '' + 'name'] //[] can use concatenation to access properties or create them in the object literal
+
+// Can also use javascript expression for a property's value, such as ?
+
+//Checks if this property exists in this object, these return false
+'city' in superman;
+superman.city !== undefined;
+// Use to check if property specific to this object, not inherited
+superman.hasOwnProperty('city');
+
+for (const key in superman) { //Iterates over these properties
+  console.log(key + ': ' + superman[key]);
+}
+
+for (const key of Object.keys(superman)) { // Returns array of properties, Object.values iterates over values, Object.entries iterates over both
+  console.log(key);
+}
+
+// New properties, properties don't always appear in order of declaration
+superman.city = 'Metropolis';
+
+// Changing properties
+superman['real name'] = 'Kal-El'
+
+// Removing properties
+delete superman.fly
+
+// Objects as parameters to functions, don't need to keep exact order
+
+function greet({greeting='Hello', name, age}) { //Uses default greeting if one isn't provided, but can be overridden
+    return `${greeting}! My name is ${name} and I am ${age} years old.`;
+}
+
+const dice = {
+    sides: 6,
+    roll() {
+      return Math.floor(this.sides * Math.random()) + 1
+    }
+}
+
+// Prevent naming collisions in large amounts of code or library usage by creating a object for them, use to reference methods within
+
+const myMaths = {
+    square(x) {
+        return x * x;
+    },
+    mean(array,callback) {
+      if (callback) {
+          array.map(callback);
+      }
+      const total = array.reduce((a,b) => a + b);
+      return total/array.length;
+    }
+};
+
+/* JSON: string representation of objects. Rules: */
+// Property names ""
+// Can use strings, numbers, true/false, null, arrays, and objects, cannot use functions
+
+// JSON.parse(batman) takes a string of data in JSON format and returns a Javascript object
+// JSON.stringify(wonderwoman) takes a javascript object and returns a string, can use spaces in between arguments to add new lines when displayed
+
+// Math object
+Math.PI;
+Math.SQRT2; // square root of 2
+Math.SQRT1_2 // 1/square root of 2
+Math.E // Euler's constant
+Math.LN2 // Log 2
+Math.LN10 // Log 10
+Math.LOG2E // Log base 2 of Euler's constant
+Math.LOG10E // Log base 10 of Euler's constant
+Math.abs // Absolute value
+Math.ceil // Round up to next closest whole integer
+Math.floor // The opposite
+Math.round // Round to next nearest integer
+Math.trunc // Only returns integer part of number
