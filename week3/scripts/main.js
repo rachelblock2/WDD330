@@ -331,3 +331,252 @@ Math.ceil // Round up to next closest whole integer
 Math.floor // The opposite
 Math.round // Round to next nearest integer
 Math.trunc // Only returns integer part of number
+Math.exp(1) //raise a number to power of Euler's constant
+Math.pow(3,2) //9, could do 1/3 for a cube root
+Math.sqrt(121) //11
+Math.cbrt(8) //2
+// Min and max for biggest and smallest numbers
+
+6 * Math.random(); //Generates random number
+Math.floor(6 * Math.random()); //Generates random integer, not 6 bc of rounding down
+
+//Dates
+
+const today = new Date();
+today.toString('2021 05 11'); //Default current date and time if no arguments
+today.getDay(); //Returns number of the day of the week
+today.getDate(); //Returns number of date of the month
+today.getFullYear(); //2021
+// Setter methods: setDate(), setMonth(), setFullYear(), use toString() afterwards
+
+
+// Regex
+const pattern = /[a-zA-Z]+ing$/; //or new RexExp('[a-zA-Z]+ing'), the 2nd allows for a variable added in
+
+pattern.test('joke'); //false
+pattern.test('joking');
+
+//Use exec to return an array with first match found
+const vowels = /[aeiou]/ //Any one of the characters can be used, use ^ to negate expressions
+//global(g) returns all matches
+//ignoreCase(i) makes pattern case insensitive, change back to false by redefining pattern
+//multiline(m) makes pattern multiline
+
+// . = any character except line breaks
+// \w = any word character
+// \W = any non-word character
+// \d = any digit
+// \D = any non-digit
+// \s = any whitespace character
+// \S = any non-whitespace character
+// ? = preceding token optional
+// * = matches one of more occurances of preceding token
+// {n} = matches n occurances of the pattern, adding , matches at least n occurances
+// {,m} = matches at m occurances of preceding token
+// {n,m} = range
+// ^ = marks position right before first character
+// $ = marks position right after last character
+// Special characters can be escaped with a backslash /\?/
+
+// Greedy and Lazy patterns
+
+const word = 'abracadabra';
+
+const greedyPattern = /a.+a/; //Use /a.+?a to get the lazy string 'abra'
+greedyPattern.exec(word); //Returns abracadabra at index 0
+
+const pdf = /.*\.pdf$/; //Looks for 0+ occurences of any character, followed by a period, with pdf extension
+
+// match() method returns array of all matches in the regex arguments, search returns the position
+'Javascript'.match(/[aeiou]/); //['a']
+'Javascript'.search(/java/i); // 13
+'Javascript'.replace(/[aeiou]/ig, '*'); //J*v*scr*pt
+
+const link = `<a href='https://www.sitepoint.com' title='Oh Yeah!'>Awesome Web Resources</a>`
+
+const mdLink = link.replace(/<a href='(.*?)'.*?>(.*?)<\/a>/g, `[$2]($1)`);
+// First group captures text inside href
+// Second captures text in anchor tags
+
+
+
+// Chapter 6: Document Object Model
+
+const body = document.body;
+typeof body; //object
+body.nodeType; //1
+body.nodeName; //BODY
+// 1 = element
+// 2 = attribute
+// 3 = text
+// 8 = comment
+// 9 = body
+
+// Works like arrays with indexes (and length property), but not actually arrays, use Array.from to create
+document.images; //Returns node list of all images
+document.links; //Returns node list of all <a> and <area> with href
+document.forms; //Returns node list of all forms
+
+const heroes = document.querySelector('#roster')
+heroes.childNodes; //Returns all children, including white space, also id and class are two separate children
+heroes.children; //Returns only child element nodes, no text nodes
+// firstChild and lastChild will return next node, or whitespace, also nextSibling and previousSibling
+
+const wonderWoman = document.querySelector('ul#roster li:last-child');
+const textNode = wonderWoman.firstChild;
+textNode.nodeValue; // or .textContent, Wonder Woman
+
+wonderWoman.setAttribute('class','villian'); //Changes the class name, can add new attributes too
+
+wonderWoman.id; // Returns id
+wonderWoman.className // Returns class name, use classList (all classes assigned to that element) instead to not override other elements with that class
+wonderWoman.classList.add('something');
+wonderWoman.classList.remove('something');
+wonderWoman.classList.toggle('something');
+wonderWoman.classList.contains('something');
+
+function createElement(tag,text) {
+  const el = document.createElement(tag);
+  el.textContent = text;
+  return el
+}
+
+const aquaman = createElement('li','Aquaman')
+heroes.insertBefore(aquaman,wonderWoman); // method called on parent node
+// Only one reference to an element can exist, aka using appendChild for wonderWoman just moves it to the end of the element
+heroes.removeChild('aquaman')
+heroes.replaceChild(newElement, oldElement)
+heroes.innerHTML // Returns all child elements as a string of HTML
+
+document.getElementsByClassName() // Live collection
+document.getElementsByTagName() // Live collection
+
+// Style properties become camel case
+
+getComputedStyle(superman); // Lists out all CSS properties in a read only property
+getComputedStyle(superman).getPropertyCSSValue('color').cssText; //rgb(0, 0, 0)
+
+// It is better to add a class with style properties than add styles in javascript itself
+
+
+
+
+// Chapter 7: Events
+
+// Click works with click, tap, or enter key
+
+addEventListener('click', () => alert('You clicked!'));
+
+// OR
+
+function doSomething() {
+  alert('You clicked!');
+}
+
+addEventListener('click', doSomething) //No parentheses
+
+// .type property tells what event
+// .target property returns reference to the node in the HTML that fired the event
+// .screenX and .screenY show pixel number from top and left of screen
+// .clientX and .clientY show pixel number from top and left of client, such as a browser window
+// .pageX and .pageY show pixel number from top and left of document, takes scrolling into account
+
+// mousedown and mouseup occur before a click if coded in
+// mouseover and mousedown: hover over and move away
+// mousemove occurs when mouse moves over element it is applied to
+// dblclick and click on same element is something to be cautious about
+
+// keydown = key pressed and continues if key held down, shift, ctrl, alt, meta/cmd
+// keypress = occurs after keydown before keyup, only for input and delete keys
+// keyup = key released, shift, ctrl, alt, meta/cmd
+
+// Checks if c key was pressed while holding down ctrl key
+addEventListener('keydown', (event) => {
+  if (event.key === 'c' && event.ctrlKey) {
+    console.log('Action canceled!')
+  }
+});
+
+// Checks if shift key held down when click
+addEventListener('click', (event) => {
+  if (event.shiftKey) {
+    console.log('A shifty click!');
+  }
+});
+
+// Touch events
+
+// Careful with touchstart, safer to use click
+
+addEventListener('touchend', () => console.log('Touch stopped.'));
+
+// touchmove = after screen touch and move around without leaving
+// touchenter = already touching and passes over element with this event listener
+// touchleave = still touching screen but leaves element
+// touchcancel = touch even interrupted or too many fingers
+
+// touches = list of touch objects, has a .length property to show many touch points in contact with surface
+// touch.screenX and touch.screenY = coordinates
+// touch.radiusX and touch.screenY = radius of touch
+// touch.force = 0-1 force
+// touch.identifier = unique id to each touch
+
+
+// Adds a click event to the paragraph, but only works once then deleted
+const onceParagraph = document.getElementById('once');
+onceParagraph.addEventListener('click', remove);
+
+function remove(event) {
+  console.log('Enjoy this while it lasts!');
+  onceParagraph.style.backgroundColor = 'pink';
+  onceParagraph.removeEventListener('click', remove);
+}
+
+
+
+const brokenLink = document.getElementById('broken');
+brokenLink.addEventListener('click', (event) => {
+  event.preventDefault();
+  console.log('Broken link!');
+});
+
+// Event propagation
+// Click on a li, you are clicking on elements it is nested inside, like ul, body, and html
+// Propagates by moving from one element to another
+
+// Bubbling = event fires on the element clicked on first, bubbles up document tree firing until reaches root node
+let ulElement = document.getElementById('list');
+let liElement = document.querySelector('#list li');
+
+ulElement.addEventListener('click', (e) => 
+  console.log('Clicked on ul')
+);
+
+// This shows first, then "bubbles" up to show the other one
+liElement.addEventListener('click', (e) =>
+  console.log('Clicked on li')
+);
+
+// Click on 2nd or 3rd li, will still see 'Clicked on ul' because event bubbles upward
+
+// Stopping bubbling, only shows li message, be careful to avoid stopping other event listeners from firing
+liElement.addEventListener('click', (event) => {
+  console.log('clicked on li');
+  event.stopPropagation(); }, false
+)
+
+// Capturing = event fires on root element, propagates downwards to each child element until clicked element is reached
+
+// 3rd parameter of addEventListener(), boolean specifies whether capturing should be used, default is false or bubbling
+
+ulElement.addEventListener('click', (e) => 
+  console.log('Clicked on ul'), true
+);
+
+liElement.addEventListener('click', (e) =>
+  console.log('Clicked on li'), true
+);
+
+
+// Event Delegation
+// Instead of attaching 3 event listeners for each li, attach to parent, and use target property
