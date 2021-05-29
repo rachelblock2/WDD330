@@ -1,3 +1,112 @@
+body {
+    margin: 0;
+    font-family: 'Zilla Slab', serif;
+    background-color: #afa288;
+}
+
+h1 {
+    font-family: 'Pattaya', sans-serif;
+    text-align: center;
+    font-size: 4rem;
+    color: white;
+    margin: 2rem;
+}
+
 ul {
     list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.strikethrough {
+    text-decoration: line-through;
+}
+
+.no_strikethrough {
+    text-decoration: none;
+}
+
+li {
+    display: block;
+    flex-direction: row;
+    align-items: center;
+    padding: 1rem 0;
+    font-size: 2rem;
+    color: white;
+    border-top: 2px dashed rgb(85, 85, 85);
+    margin: 0 1.1rem;
+}
+
+input[type=image] {
+    width: 28px;
+    align-self: flex-end;
+    margin: 0;
+    padding: 0.3rem 1rem;
+    float: right;
+}
+
+li input {
+    align-self: flex-start;
+}
+
+li input[type=checkbox] {
+    appearance: none;
+    margin: 0.5rem 1rem 0 1rem;
+    padding: 0.8rem;
+    border: 2.5px solid black;
+    border-radius: 4.5rem;
+    outline: none;
+    background-color: white;
+    cursor: pointer;
+}
+
+li input[type=checkbox]:checked {
+    border: 2.5px solid white;
+    border-radius: 4.5rem;
+    outline: none;
+    background-color: #696152;
+    cursor: pointer;
+}
+
+#button_holder, section:nth-child(3) {
+    margin: 0.6rem 1.4rem 1.7rem 1.4rem;
+    display: flex;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#all_tasks, #active_tasks, #complete_tasks {
+    color: white;
+    background-color: #685a40;
+    border-width: 0.5rem;
+    border-style: outset;
+    border-radius: 2.5rem;
+    padding: 0.8rem;
+    font-family: 'Pattaya', sans-serif;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+#addNewTask {
+    color: black;
+    background-color: #c4b290;
+    border-radius: 2.2rem;
+    padding: 0rem;
+    width: 5rem;
+    font-size: 2.7rem;
+    border-width: 0.5rem;
+    border-style: outset;
+}
+
+textarea {
+    margin-right: 1rem;
+    resize: none;
+    border-radius: 3rem;
+    padding-top: 1rem;
+    text-indent: 1rem;
+    width: 100%;
+    font-size: 0.9rem;
+    outline: none;
 }

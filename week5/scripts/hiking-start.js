@@ -21,14 +21,16 @@ function showHikeList() {
   const hikeListElement = document.getElementById("hikes");
   hikeListElement.innerHTML = "";
   renderHikeList(hikeList, hikeListElement);
+  setEventListener();
 }
 
 function renderHikeList(hikes, parent) {
   hikes.forEach(hike => {
     parent.appendChild(renderOneHike(hike));
-    addHikeListener(hike);
+    // addHikeListener(hike);
   });
 }
+
 function renderOneHike(hike) {
   const item = document.createElement("li");
   
@@ -48,28 +50,29 @@ function renderOneHike(hike) {
   return item;
 }
 
-let ul = document.querySelector('ul');
 
-// in order to show the details of a hike ontouchend we will need to attach a listener AFTER the list of hikes has been built. The function below does that.
-function addHikeListener() {
-  // We need to loop through the children of our list and attach a listener to each, remember though that children is a nodeList...not an array. So in order to use something like a forEach we need to convert it to an array.
-    const childrenArray = Array.from(ul.children);
-    childrenArray.forEach(child => {
-        child.addEventListener('touchend', e => {
-      //       // why currentTarget instead of target?
-            this.showOneHike(e.currentTarget.dataset.name);
-          });
-        });
-      }
+// // in order to show the details of a hike ontouchend we will need to attach a listener AFTER the list of hikes has been built. The function below does that.
+// function addHikeListener() {
+  //   // We need to loop through the children of our list and attach a listener to each, remember though that children is a nodeList...not an array. So in order to use something like a forEach we need to convert it to an array.
+  //     const childrenArray = Array.from(ul.children);
+  //     childrenArray.forEach(child => {
+    //         child.addEventListener('touchend', e => {
+      //       //       // why currentTarget instead of target?
+      //             this.showOneHike(e.currentTarget.dataset.name);
+      //           });
+      //         });
+      //       }
+      
+function setEventListener() {
+  let ul = document.querySelectorAll('li');
+  // let listItems = ul.children;
+  // console.log(ul.children);
+  console.log(ul)
 
-
-// let listItems = Array.from(ul.children)
-// console.log(ul.children)
-// console.log(listItems)
-
-// listItems.forEach(
-//   listItem => {
-//     listItem.addEventListener('touchend click', (e) => {
-//       console.log('hi')
-//   })
-//   })
+  ul.forEach(
+    listItem => {
+      listItem.addEventListener('touchend', (e) => {
+        console.log('hi');
+  });
+  });
+}

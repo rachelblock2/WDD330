@@ -4,9 +4,12 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>To Do Site App</title>
     <link rel="stylesheet" href="styles/todo.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Pattaya&family=Zilla+Slab:wght@300&display=swap" rel="stylesheet">
 </head>
+
 <body>
     <header>
         <h1>Todos</h1>
@@ -15,8 +18,14 @@
         <section>
             <ul></ul>
         </section>
+        <section id="button_holder">
+            <button id="complete_tasks">Completed</button>
+            <button id="active_tasks">Active</button>
+            <button id="all_tasks">All</button>
+        </section>
         <section>
-            <input type="textarea" id="task_input" name="task_input" placeholder="Wash the dishes">
+            <textarea rows="3" cols="50" id="task_input" name="task_input" placeholder="Wash the dishes"></textarea>
+            <button id="addNewTask">+</button>
         </section>
     </main>
     <footer></footer>
