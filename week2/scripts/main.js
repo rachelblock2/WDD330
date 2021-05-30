@@ -139,7 +139,7 @@ button.addEventListener("click", getName) //Don't add parantheses if you don't w
 
 // Chapter 3 notes
 
-const myArray = []
+let myArray = []
 myArray[0] = 'Superman';
 myArray[0] = 'Batman';
 myArray[1] = 'Wonder Woman';
@@ -170,7 +170,7 @@ for (let i=0, max=myArray.length; i < max; i++) { //Using max saves time and spe
 
 const list = new Set([1,2,3]);
 list.add(1); //Use for words, otherwise words will be broken into individual letters
-list.size();
+// list.size();
 list.has('Captain America') //Delete and clear too
 // Can loop over set, but not weak set. No duplicate values
 
@@ -181,12 +181,12 @@ const newerList = Array.from(list);
 // Weak sets and weak maps garbage collect references to dead objects, cannot add primitive datatypes to it
 
 // Maps work like dictionaries
-romanNumerals.set(1, 'I'); //Use get with the key to find the value
+// romanNumerals.set(1, 'I'); //Use get with the key to find the value
 
 
-for (const key of romanNumerals.keys()) { // Or values
-    console.log(key)
-}
+// for (const key of romanNumerals.keys()) { // Or values
+//     console.log(key)
+// }
 
 const n = 5
 n > 2 ? console.log('N is greater than 2') : console.log('N is less than 2') // ternary operator
@@ -263,14 +263,15 @@ myArray.forEach((hero, index) => console.log(`Hero at position ${index} is ${her
 
 const square = x => x*x;
 
-[1,2,3].map(square) //Different from forEach because it returns a new array with the previous values replaced by the calculations
+let numberList = [1,2,3]
+numberList.map(square) //Different from forEach because it returns a new array with the previous values replaced by the calculations
 
 // Using map with anonymous functions
-[1,2,3].map(x => 2 * x);
+numberList.map(x => 2 * x);
 [`red`,`green`,`blue`].map(color => `<p>${color.toUpperCase()}</p>`); //Could also have index and array as parameters
 
 //Reduce
-[1,2,3,4,5].reduce((currentTotal, currentValue) => prev + currentValue); //15
+// [1,2,3,4,5].reduce((currentTotal, currentValue) => prev + currentValue); //15
 
 const sentence = `The quick brown fox jumped over the lazy dog.`
 const words = sentence.split()
@@ -285,7 +286,7 @@ moreNumbers.filter(x => !x) //Finds all falsy values
 // Complex combination of iterators
 
 // 1. Returns new array of squared values [1,4,9]. 2. "reduces" the new array to just one number by adding everything together 
-[1,2,3].map(x => x*x).reduce((currentTotal, x) => currentTotal + x);
+numberList.map(x => x*x).reduce((currentTotal, x) => currentTotal + x);
 
 // Final update of current book quiz
 

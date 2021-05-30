@@ -1,7 +1,7 @@
 // Chapter 10: Testing and Debugging
 
 // Exception: an error that produces a return value that can then be used by the program to deal with the error
-unicorn();
+// unicorn();
 
 // Stack traces work backward to identify the original function/method that started the sequence
 
@@ -48,10 +48,10 @@ const error = new Error('Oops, something went wrong');
 // Properties - name, message, stack(not safe for prod)
 
 // throw halts program
-throw 2;
-throw 'Up';
-throw { toys: 'out of pram' };
-throw new ReferenceError('Something has gone badly wrong!'); //best
+// throw 2;
+// throw 'Up';
+// throw { toys: 'out of pram' };
+// throw new ReferenceError('Something has gone badly wrong!'); //best
 
 // Try, catch and finally
 function imaginarySquareRoot(number) {

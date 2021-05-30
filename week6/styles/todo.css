@@ -4,6 +4,12 @@ body {
     background-color: #afa288;
 }
 
+a:first-child {
+    color: white;
+    text-decoration: none;
+    margin: 1rem;
+}
+
 h1 {
     font-family: 'Pattaya', sans-serif;
     text-align: center;

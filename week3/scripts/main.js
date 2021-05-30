@@ -1,30 +1,30 @@
 // Calling a method
 
-let user = {
-    name: "John",
-    age: 30
-};
+// let user = {
+//     name: "John",
+//     age: 30
+// };
 
-user.sayHi = function() {
-alert("Hello!");
-};
+// user.sayHi = function() {
+// alert("Hello!");
+// };
 
-user.sayHi(); // Hello!
+// user.sayHi(); // Hello!
 
 
-// these objects do the same
-user = {
-    sayHi: function() {
-      alert("Hello");
-    }
-  };
+// // these objects do the same
+// user = {
+//     sayHi: function() {
+//       alert("Hello");
+//     }
+//   };
   
-  // method shorthand looks better, right?
-  user = {
-    sayHi() { // same as "sayHi: function(){...}"
-      alert("Hello");
-    }
-  };
+//   // method shorthand looks better, right?
+//   user = {
+//     sayHi() { // same as "sayHi: function(){...}"
+//       alert("Hello");
+//     }
+//   };
 
 
 // Using "this" in methods
@@ -44,7 +44,7 @@ user = {
 
 // "this" is not bound
 
-let user = { name: "John" };
+let user1 = { name: "John" };
 let admin = { name: "Admin" };
 
 // When a function is declared, it may use this, but that this has no value until the function is called.
@@ -70,7 +70,7 @@ idea of a "bound this", where methods defined in an object always have this refe
 In JavaScript this is “free”, its value is evaluated at call-time and does not depend 
 on where the method was declared, but rather on what object is “before the dot”. */
 
-let user = {
+let newUser = {
     firstName: "Ilya",
     sayHi() {
       let arrow = () => alert(this.firstName);
@@ -78,7 +78,7 @@ let user = {
     }
   };
   
-  user.sayHi(); // Ilya
+  newUser.sayHi(); // Ilya
 
 // Using "this" in different context
 
@@ -93,25 +93,25 @@ console.log(this) // Window
 //     }
 // }
 
-function Human (age) {
-    this.age = age
-}
+// function Human (age) {
+//     this.age = age
+// }
   
-let greg = new Human(22)
-let thomas = new Human(24)
+// let greg = new Human(22)
+// let thomas = new Human(24)
 
-console.log(greg) // this.age = 22
-console.log(thomas) // this.age = 24
+// console.log(greg) // this.age = 22
+// console.log(thomas) // this.age = 24
 
 // Object Methods - refers to the object itself, methods instead of attributes
 
-let o = {
-    sayThis () {
-      console.log(this)
-    }
-}
+// let o = {
+//     sayThis () {
+//       console.log(this)
+//     }
+// }
 
-o.sayThis() // o
+// o.sayThis() // o
 
 function Human (name) {
     return {
@@ -129,18 +129,18 @@ function Human (name) {
 
 // Simple Functions - this refers to the window object
 
-function simpleFunction () {
-    console.log(this)
-  }
+// function simpleFunction () {
+//     console.log(this)
+//   }
   
-  const o = {
-    sayThis () {
-      simpleFunction()
-    }
-  }
+//   const o = {
+//     sayThis () {
+//       simpleFunction()
+//     }
+//   }
   
-  simpleFunction() // Window
-  o.sayThis() // Window
+//   simpleFunction() // Window
+//   o.sayThis() // Window
 
 //   const o = {
 //     doSomethingLater () {
@@ -153,7 +153,7 @@ function simpleFunction () {
 //     }
 //   }
 
-const o = {
+const oldO = {
     doSomethingLater () {
       const self = this
       setTimeout(function() {
@@ -212,11 +212,11 @@ function someFunction () {
 
 // Changing this with bind
 
-function sayThis () {
-    console.log(this)
-  }
-const boundFunc = sayThis.bind({hippy: 'hipster'}) //hippy: 'hipster' becomes this in a bound function
-boundFunc()
+// function sayThis () {
+//     console.log(this)
+//   }
+// const boundFunc = sayThis.bind({hippy: 'hipster'}) //hippy: 'hipster' becomes this in a bound function
+// boundFunc()
 
 // Object {hippy: 'hipster'}
 
@@ -444,17 +444,17 @@ function createElement(tag,text) {
 const aquaman = createElement('li','Aquaman')
 heroes.insertBefore(aquaman,wonderWoman); // method called on parent node
 // Only one reference to an element can exist, aka using appendChild for wonderWoman just moves it to the end of the element
-heroes.removeChild('aquaman')
-heroes.replaceChild(newElement, oldElement)
+// heroes.removeChild('aquaman')
+// heroes.replaceChild(newElement, oldElement)
 heroes.innerHTML // Returns all child elements as a string of HTML
 
-document.getElementsByClassName() // Live collection
-document.getElementsByTagName() // Live collection
+// document.getElementsByClassName() // Live collection
+// document.getElementsByTagName() // Live collection
 
 // Style properties become camel case
 
-getComputedStyle(superman); // Lists out all CSS properties in a read only property
-getComputedStyle(superman).getPropertyCSSValue('color').cssText; //rgb(0, 0, 0)
+// getComputedStyle(superman); // Lists out all CSS properties in a read only property
+// getComputedStyle(superman).getPropertyCSSValue('color').cssText; //rgb(0, 0, 0)
 
 // It is better to add a class with style properties than add styles in javascript itself
 
@@ -524,7 +524,7 @@ addEventListener('touchend', () => console.log('Touch stopped.'));
 
 // Adds a click event to the paragraph, but only works once then deleted
 const onceParagraph = document.getElementById('once');
-onceParagraph.addEventListener('click', remove);
+// onceParagraph.addEventListener('click', remove);
 
 function remove(event) {
   console.log('Enjoy this while it lasts!');
