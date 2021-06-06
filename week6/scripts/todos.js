@@ -5,13 +5,13 @@ import {
 let toDoList = []; //The list that holds the task objects
 
 let addNewTask = document.querySelector('#addNewTask');
-let taskInput = document.querySelector('#task_input')
+let taskInput = document.querySelector('#task_input');
 
 // Load saved tasks into the webpage if there are any that exist
 if (localStorage.getItem("Tasks")) {
     toDoList = JSON.parse(localStorage.getItem("Tasks"));
     displayTasks(toDoList);
-}
+};
 
 // When user enters a string into the input, add it to the list of tasks
 addNewTask.addEventListener('touchend', (e) => {
@@ -19,15 +19,15 @@ addNewTask.addEventListener('touchend', (e) => {
         let newTodo = new Todo(taskInput.value);
         toDoList.push(newTodo);
         localStorage.setItem(`Tasks`, JSON.stringify(toDoList));
-        taskInput.value = '' //Clear the input field
-        displayTasks(toDoList)
+        taskInput.value = ''; //Clear the input field
+        displayTasks(toDoList);
     }
-})
+});
 
 // Show the list of tasks on the webpage
 function displayTasks(toDoList) {
     let ul = document.querySelector('ul');
-    ul.innerHTML = ''
+    ul.innerHTML = '';
 
     toDoList.forEach(
         todoItem => {
@@ -41,10 +41,11 @@ function displayTasks(toDoList) {
 
     checkBox();
     addDeleteBtns();
-    createAllTaskBtn();
-    createActiveBtn();
-    createCompletedBtn();
-};
+}
+
+createAllTaskBtn();
+createActiveBtn();
+createCompletedBtn();
 
 // Add functionality to delete buttons created with the tasks
 function addDeleteBtns() {
@@ -81,7 +82,7 @@ function checkBox() {
             });
         }
     );
-};
+}
 
 // Cross out completed task
 function crossOutTask(checkboxIndex) {
@@ -97,24 +98,25 @@ function crossOutTask(checkboxIndex) {
 function createAllTaskBtn () {
     let allTaskBtn = document.querySelector('#all_tasks')
     allTaskBtn.addEventListener('click', (e) => {
+        console.log('selected');
         displayTasks(toDoList);
     });
-};
+}
 
 // Show all uncompleted tasks
 function createActiveBtn () {
     let activeBtn = document.querySelector('#active_tasks')
     activeBtn.addEventListener('click', (e) => {
-        let filter = toDoList.filter(todo => todo.Completed === false)
+        let filter = toDoList.filter(todo => todo.Completed === false);
         displayTasks(filter);
     });
-};
+}
 
 // Show all completed tasks
 function createCompletedBtn () {
     let completeBtn = document.querySelector('#complete_tasks')
     completeBtn.addEventListener('click', (e) => {
-        let filter = toDoList.filter(todo => todo.Completed === true)
+        let filter = toDoList.filter(todo => todo.Completed === true);
         displayTasks(filter);
     });
-};
+}
