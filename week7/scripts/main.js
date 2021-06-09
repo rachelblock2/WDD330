@@ -3,18 +3,22 @@
 // Functions - 1st class objects, properties and methods included
 // Custom = square.description = 'Squares a number'
 function square(x) {
-    return x*x;
+    return x * x;
 }
 
 square.length //1
 
 // Call() - set value of 'this' to object inserted in as 1st argument, more parameters passed in secondly
-function sayHello(greeting='Hello'){
+function sayHello(greeting = 'Hello') {
     return `${ greeting }, my name is ${ this.name }`;
 }
 
-const clark = { name: 'Clark' };
-const bruce = { name: 'Bruce' };
+const clark = {
+    name: 'Clark'
+};
+const bruce = {
+    name: 'Bruce'
+};
 
 sayHello.call(clark, 'How do you do');
 // 'How do you do, my name is Clark'
@@ -29,43 +33,44 @@ square.call(null, 4) //.apply passes in arguments as [4]
 // 16
 
 // Memoization - stores results so huge computations don't need repetition
-function square(x){
+function square(x) {
     square.cache = square.cache || {};
     if (!square.cache[x]) {
-        square.cache[x] = x*x;
+        square.cache[x] = x * x;
     }
     return square.cache[x]
 }
 
 // Immediately Invoked Function Expression– IIFE – anonymous function invoked as soon as defined.
 // Helpful bc temp variable, no messy scope
-(function(){
+(function () {
     const temp = 'World';
     console.log(`Hello ${temp}`);
-    })();
-    //  'Hello World'
+})();
+//  'Hello World'
 
 // Destructuring
-let [a,b] = [1,2];
-[a,b] = [b,a];
+let [a, b] = [1, 2];
+[a, b] = [b, a];
 
 // Useful for setup, or for 'use strict' wrapped around your code
 { // Or could use (function() {
     const name = 'Peter Parker'; // This might be obtained from a cookie in reality
-    const days = ['Sunday','Monday','Tuesday','Wednesday','Thursday', 'Friday','Saturday'];
-    const date = new Date(),today = days[date.getDay()];
+    const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+    const date = new Date(),
+        today = days[date.getDay()];
     console.log(`Welcome back ${name}. Today is ${today}`);
 } //})()
 //  'Welcome back Peter Parker. Today is Tuesday'
 
 // Just simply place into blocks instead
-(function() {
+(function () {
     // block A
     const name = 'Block A';
     console.log(`Hello from ${name}`);
-    }());
+}());
 
-(function() {
+(function () {
     // block B
     const name = 'Block B';
     console.log(`Hello from ${name}`);
@@ -75,16 +80,16 @@ let [a,b] = [1,2];
 
 // Functions redefining themselves
 // Properties are lost when function is redefined
-function party(){
+function party() {
     console.log('Wow this is amazing!'); //1st time run
-    party = function(){
+    party = function () {
         console.log('Been there, got the T-Shirt'); //Any times after
     }
 }
 
-function party(){
+function party() {
     console.log('Wow this is amazing!');
-    party = function(){
+    party = function () {
         console.log('Been there, got the T-Shirt');
     }
 }
@@ -94,7 +99,7 @@ const beachParty = party; // note that the party function has not been invoked
 beachParty(); // the party() function has now been redefined, even though it hasn't been called explicitly
 // 'Wow this is amazing!'
 
-party(); 
+party();
 //  'Been there, got the T-Shirt'
 
 beachParty(); // but this function hasn't been redefined
@@ -107,8 +112,8 @@ beachParty(); // no matter how many times this is called it will remain the same
 
 function party() {
     console.log('Wow this is amazing!');
-    party = function(){
-    console.log('Been there, got the T-Shirt');
+    party = function () {
+        console.log('Been there, got the T-Shirt');
     }
 }
 party.music = 'Classical Jazz'; // set a property of the function
@@ -118,16 +123,16 @@ party.music; // function has now been redefined (redefined inside function with 
 // undefined
 
 // Useful for feature detection
-function ride(){
+function ride() {
     if (window.unicorn) { //If this feature exists, redefine the function
-        ride = function(){
-        // some code that uses the brand new and sparkly unicorn methods
-        return 'Riding on a unicorn is the best!';
+        ride = function () {
+            // some code that uses the brand new and sparkly unicorn methods
+            return 'Riding on a unicorn is the best!';
         }
     } else {
-        ride = function(){ //If not, redefine the function to this
-        // some code that uses the older pony methods
-        return 'Riding on a pony is still pretty good';
+        ride = function () { //If not, redefine the function to this
+            // some code that uses the older pony methods
+            return 'Riding on a pony is still pretty good';
         }
     }
     return ride();
@@ -145,16 +150,16 @@ function factorial(n) {
 }
 
 // Collatz Conjecture - number even? / 2, number odd? * 3 + 1, ends with 4,2,1 forever
-function collatz(n, sequence=[n]) {
-    if (n === 1){
+function collatz(n, sequence = [n]) {
+    if (n === 1) {
         return `Sequence took ${sequence.length} steps. It was ${sequence}`;
     }
-    if (n%2 === 0) {
-        n = n/2;
-    } else { 
-        n = 3*n + 1;
+    if (n % 2 === 0) {
+        n = n / 2;
+    } else {
+        n = 3 * n + 1;
     }
-    return collatz(n,[...sequence,n]);
+    return collatz(n, [...sequence, n]);
 }
 
 collatz(18);
@@ -163,12 +168,12 @@ collatz(18);
 // Event Driven Asynchronous Programming
 // Instead of waiting for an event to occur, a callback can be created that’s invoked when the event happens.
 
-function wait(message, callback, seconds){
-    setTimeout(callback,seconds * 1000);
+function wait(message, callback, seconds) {
+    setTimeout(callback, seconds * 1000);
     console.log(message);
 }
 
-function selfDestruct(){
+function selfDestruct() {
     console.log('BOOOOM!');
 }
 
@@ -232,17 +237,17 @@ const dice = {
     }
 }
 
-const promise = new Promise( (resolve,reject) => {
+const promise = new Promise((resolve, reject) => {
     const n = dice.roll();
     setTimeout(() => {
-        (n > 1) ? resolve(n) : reject(n);
-    }, n*1000);
+        (n > 1) ? resolve(n): reject(n);
+    }, n * 1000);
 });
 
 // .then has 2 args, 1st if promise calls the resolved function, 2nd if promise calls the rejected function
-promise.then( 
-    result => console.log(`Yes! I rolled a ${result}`), 
-    result => console.log(`Drat! ... I rolled a ${result}`) 
+promise.then(
+    result => console.log(`Yes! I rolled a ${result}`),
+    result => console.log(`Drat! ... I rolled a ${result}`)
 );
 
 // Or use try/catch
@@ -282,26 +287,26 @@ promise.then(
 //     }
 // }
 
-function random(a,b,callback) {
+function random(a, b, callback) {
     if (b === undefined) b = a, a = 1; // if only one argument is supplied, assume the lower limit is 1
-        const result = Math.floor((b-a+1) * Math.random()) + a
-    if(callback) {
+    let result = Math.floor((b - a + 1) * Math.random()) + a
+    if (callback) {
         result = callback(result);
     }
     return result;
 }
 
 function square(n) {
-    return n*n;
+    return n * n;
 }
 
-random(1,10,square);
+random(1, 10, square);
 // 49
 
 // Functions that return functions
 function returnHello() {
     console.log('returnHello() called');
-    return function() { //To make use of this function, assign it to a new variable
+    return function () { //To make use of this function, assign it to a new variable
         console.log('Hello World!');
     }
 }
@@ -312,7 +317,7 @@ const hello = returnHello();
 hello();
 
 function greeter(greeting = 'Hello') {
-    return function() {
+    return function () {
         console.log(greeting);
     }
 }
@@ -335,6 +340,7 @@ germanGreeter();
 // Closures - Accessing/keeping alive variables with function scope outside of function
 function outer() {
     const outside = 'Outside!';
+
     function inner() { //This has access to outside variable
         const inside = 'Inside!';
         console.log(outside);
@@ -346,6 +352,7 @@ function outer() {
 
 function outer() {
     const outside = 'Outside!';
+
     function inner() {
         const inside = 'Inside!';
         console.log(outside);
@@ -368,9 +375,9 @@ const closure = outer();
 // // 86
 
 // How to change variables in a closure
-function counter(start){
+function counter(start) {
     let i = start;
-    return function() {
+    return function () {
         return i++;
     }
 }
@@ -387,15 +394,15 @@ function* exampleGenerator() {
 // it returns a Generator object that can be used to create an iterator that implements a next() method 
 // that returns a value every time the next() method is called.
 
-function* fibonacci(a,b) {
-    let [ prev,current ] = [ a,b ];
-    while(true) {
+function* fibonacci(a, b) {
+    let [prev, current] = [a, b];
+    while (true) {
         [prev, current] = [current, prev + current];
         yield current; //Difference from yield bc it saves value and 'stops' function until next called again
     }
 }
 
-const sequence = fibonacci(1,1); //Inherits the 'next()' method
+const sequence = fibonacci(1, 1); //Inherits the 'next()' method
 sequence.next();
 // 2
 sequence.next();
@@ -448,40 +455,41 @@ message // hasn't changed
 
 // Refactored
 const number = 42;
-function pureAdd(x,y) {
+
+function pureAdd(x, y) {
     return x + y; //Outside vars not changed, same vars passed in = same result
 }
-result = pureAdd(number,10);
+result = pureAdd(number, 10);
 // 52
 
 
 // Another example
-function hypotenuse(a,b) {
+function hypotenuse(a, b) {
     return Math.sqrt(square(a) + square(b));
 }
-hypotenuse(3,4);
+hypotenuse(3, 4);
 // 5
 
 function sum(array, callback) {
-    if(callback) {
+    if (callback) {
         array = array.map(callback);
     }
-    return array.reduce((a,b) => a + b );
+    return array.reduce((a, b) => a + b);
 }
 
-sum([1,2,3]); // returns 1 + 2 + 3
+sum([1, 2, 3]); // returns 1 + 2 + 3
 // 6
 
-sum([1,2,3], square); // returns 1^2 + 2^2 + 3^2
+sum([1, 2, 3], square); // returns 1^2 + 2^2 + 3^2
 // 14
 
 
 // Higher Order Functions - accept another function as an argument, or return another function as a result, or both.
 
 // Generic Function that returns a more specific function by closure around args to keep them 'alive'
-function multiplier(x){
-    return function(y){
-        return x*y;
+function multiplier(x) {
+    return function (y) {
+        return x * y;
     }
 }
 
@@ -492,14 +500,14 @@ tripler(10); //30
 
 
 function power(x) {
-    return function(power) {
-        return Math.pow(x,power);
+    return function (power) {
+        return Math.pow(x, power);
     }
 }
 
 twoExp = power(2); //powers of 2
 // function (power) {
-    // return Math.pow(x,power);
+// return Math.pow(x,power);
 // }
 twoExp(5);
 // 32
@@ -515,10 +523,10 @@ power(3)(5); //Returns a function, an arg is immediately passed to it
 // A final result is only returned once all the expected arguments have eventually been provided
 
 // Currying multiplier function
-function multiplier(x,y) {
+function multiplier(x, y) {
     if (y === undefined) {
-        return function(z) { //Parameter passed in after function is returned and assigned to var
-        return x * z;
+        return function (z) { //Parameter passed in after function is returned and assigned to var
+            return x * z;
         }
     } else {
         return x * y;
@@ -527,7 +535,7 @@ function multiplier(x,y) {
 
 calcTax = multiplier(0.22);
 //  function (z){
-    // return x * z;
+// return x * z;
 // }
 
 calcTax(400);
@@ -535,16 +543,221 @@ calcTax(400);
 
 // General Curry function
 
-function curry(func,...oldArgs) {
-    return function(...newArgs) {
-        const allArgs = [...oldArgs,...newArgs];
+function curry(func, ...oldArgs) {
+    return function (...newArgs) {
+        const allArgs = [...oldArgs, ...newArgs];
         return func(...allArgs);
     }
 }
 
-const divider = (x,y) => x/y;
-divider(10,5);
+const divider = (x, y) => x / y;
+divider(10, 5);
 // 2
-const reciprocal = curry(divider,1);
+const reciprocal = curry(divider, 1);
 reciprocal(2);
 // 0.5
+
+
+
+// Chapter 13: AJAX
+
+// AJAX - Asynchronous JavaScript and XML, a technique using these processes below
+// Asynchronous - data request doesn't require program to halt, can keep running while waiting for event to fire using callbacks
+// Javascript - allows for sending and receiving responses from a server
+// XML - the document containing the data, currently JSON is used more commonly
+
+// Allows JavaScript to request resources from a server on behalf of the client 
+// The resources requested are usually JSON data or small fragments of text or HTML rather than a whole web page.
+// Involves using a server-side language, such as PHP, Ruby, Node.js, or .NET to serve the data response following an Ajax request (usually from a back-end database)
+
+
+// Cross-origin resource sharing (CORS) - allows for a request to made from a different domain without it being blocked bc avoiding malicious scripts
+// Websites have specific HTTPS headers to allow API to access certain information
+
+// APIs are a collection of methods that allow external access to a program and data
+
+// const url = 'https:example.com/data';
+// fetch(url)
+//     .then((response) => {
+//         if (response.ok) {
+//             return response;
+//         }
+//         throw Error(response.statusText);
+//     })
+//     .then(response => console.log('Do something here'))
+//     .catch(error => console.log('There was an error!'))
+
+// Response object has methods & properties
+// .ok method - 200 if success, 201 if resource created, 204 if successful but no content. True if status 200-299 
+// header prop - object, contains any headers assoc. with response
+// url prop - A string containing the URL of response
+// redirected prop – A boolean value that specifies if the response is the result of a redirect
+//  type – A string value of...
+//  'basic' (response from the same domain)
+// 'cors' (data was received from a valid cross-origin request from a different domain)
+// 'error' (a network error occurs)
+// 'opaque' (response received from 'no-cors' request from another domain, severely restricted data)
+
+// .text, turns data into USVSting Object that reads as a JS string
+// .blob, reads file of raw data like img or spreadsheet, returns as a promise that resolves (use blob.type to log)
+// .json, json file, can create your own response with constructor function
+
+// 1st arg is data, second is object to be used for properties
+// const response = new Response( 'Hello!', {
+//     ok: true,
+//     status: 200,
+//     statusText: 'OK',
+//     type: 'cors',
+//     url: '/api'
+// });
+
+// const request = new Request('https://example.com/data', { //could also put created response directly inside fetch method
+//     method: 'GET', //specifies the HTTP method, default is GET
+//     mode: 'cors',
+//     redirect: 'follow', //'follow' (the redirect is followed), 'error' (an error is thrown) or 'manual' (the user has to click on a link to follow the redirect)
+//     cache: 'no-cache' //can force request a resource and update the cache with the result, or force only look in cache for resource.
+// });
+
+// HTTP request types
+// GET requests to retrieve resources
+// POST requests, usually used to create a resource but can actually perform any task
+// PUT requests toupsert, which means insert a resource or update it entirely
+// PATCH requests to make partial updates to a resource
+// DELETE requests to delete a resources.
+
+// Headers - file-type of the resource, cookie information, authentication information and when the resource was last modified
+// const headers = new Headers({ 'Content-Type': 'text/plain', 'Accept-Charset' : 'utf-8', 'Accept-Encoding':'gzip,deflate' })
+// header methods - has (checks if arg in headers object), get (returns value of arg in headers), set (set properties or create headers with properties)
+// append - adds new header to header object, delete - deletes header in header object
+
+// for(const entry of headers.entries(){
+//     console.log(entry);
+//     }
+// [ 'Content-Type', 'application/json' ]
+
+
+// const url = 'https:example.com/data';
+// const headers = new Headers({ 'Content-Type': 'text/plain', 'Accept-Charset' : 'utf-8', 'Accept-Encoding':'gzip,deflate' })
+// const request = (url,{
+//     headers: headers
+// })
+// fetch(request)
+// .then( function(response) {
+//     if(response.ok) {
+//         return response;
+//     }
+//     throw Error(response.statusText);
+// })
+// .then( response => // do something with response )
+// .catch( error => console.log('There was an error!') )
+
+const textButton = document.getElementById('number');
+const apiButton = document.getElementById('chuck');
+const outputDiv = document.getElementById('output');
+
+const textURL = 'http://numbersapi.com/random';
+
+textButton.addEventListener('touchend', () => {
+    fetch(textURL)
+    .then( response => {
+        outputDiv.innerHTML = 'Waiting for response...';
+    if(response.ok) {
+        return response;
+    }
+        throw Error(response.statusText);
+    })
+    .then( response => response.text() )
+    .then( text => outputDiv.innerText = text )
+    .catch( error => console.log('There was an error:', error))
+},false);
+
+// Ajax Load and Preloaders.net for spinning wheels for requests waiting
+
+// Mimics a task being saved to a database
+const form = document.forms['todo'];
+form.addEventListener('submit', addTask, false);
+function addTask(event) {
+    event.preventDefault();
+    const number = form.task.value;
+    const task = {
+        userId: 1,
+        title: form.task.value,
+        completed: false
+    }
+    const data = JSON.stringify(task);
+    const url = 'https://jsonplaceholder.typicode.com/todos';
+    const headers = new Headers({
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+    });
+    const request = new Request(url,
+    {
+        method: 'POST',
+        header: headers,
+        body: data
+    }
+    )
+    fetch(request)
+    .then( response => response.json() )
+    .then( task => console.log(`Task saved with an id of ${task.id}`) )
+    .catch( error => console.log('There was an error:', error))
+}
+
+// const form = document.forms['todo'];
+// form.addEventListener('submit', addTask, false);
+// function addTask(event) {
+//     event.preventDefault();
+//     const task = new FormData(form); //serializes the data automatically to be sent with AJAX, aka creates the task object
+//     const url = `http://echo.jsontest.com/id/1/title/${form.task.value}`;
+//     const headers = new Headers({
+//         'Accept': 'application/json',
+//         'Content-Type': 'application/json'
+//     });
+//     const request = new Request(url,
+//     {
+//         method: 'POST',
+//         mode: 'cors',
+//         header: headers,
+//         body: JSON.stringify(task)
+//     }
+//     )
+//     fetch(request)
+//     .then( response => response.json() )
+//     .then( data => console.log(`${data.title} saved with an id of ${data.id}`) )
+//     .catch( error => console.log('There was an error:', error))
+// }
+
+// Append key value pairs
+// data = new FormData(); // no form provided as an argument creates an empty form data instance
+// data.append('height', 75);
+
+
+
+let list = document.querySelector('#fetchUl');
+let next;
+let prev;
+
+getUrl('http://swapi.dev/api/people/');
+
+function getUrl(url) {
+    fetch(url)
+        .then((response) => response.json())
+        .then((jsonData) => {
+            list.innerHTML = ''
+            next = jsonData.next;
+            prev = jsonData.previous;
+
+            jsonData.results.forEach((person) => {
+                list.innerHTML += `<li>${person.name}</li>`;
+            });    
+        });    
+}        
+
+document.querySelector('#next').addEventListener('touchend', () => {
+    getUrl(next);
+})    
+
+document.querySelector('#prev').addEventListener('touchend', () => {
+    getUrl(prev);
+})    
+
