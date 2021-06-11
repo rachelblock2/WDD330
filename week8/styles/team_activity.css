@@ -1,0 +1,45 @@
+h1 {
+    margin: 2rem;
+    padding: 0;
+}
+
+ul {
+    margin: 1rem;
+    padding: 0;
+}
+
+li {
+    list-style: none;
+    padding: 0.5rem 1rem;
+    margin: 0.5rem;
+    font-size: 1.3rem;
+}
+
+li:nth-child(odd) {
+    border-bottom: 4px dashed rgb(74, 181, 243);
+}
+
+li:nth-child(even) {
+    border-bottom: 4px dashed rgb(83, 228, 114);
+}
+
+div {
+    display: flex;
+    margin: 1.3rem 1rem;
+    align-content: center;
+    justify-content: space-around;
+    align-items: center;
+}
+
+button {
+    background-color: black;
+    color: yellow;
+    border-radius: 8%;
+    padding: 1rem;
+    font-size: 1rem;
+}
+
+.notAvailable {
+    background-color: rgb(153, 153, 153);
+    color: rgb(99, 99, 99);
+}
