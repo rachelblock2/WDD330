@@ -1,0 +1,188 @@
+/* Chapter 8: CSS3 Transforms and Transitions */
+
+/* Transform - translate, rotate, scale, and/or skew */
+/* Translate - move elements left, right, up, or down w/o disturbing flow of document */
+/* transform: translate(45px, -45px); */
+/* -webkit-transform: translate(45px,-45px); /* iOS8, Android 
+↵4.4.3, BB10 */
+/* -ms-transform: translate(45px,-45px); IE9 only */
+
+/* No transforming flow, so use height, width, or font size if you want. This will alter space allocated for element.*/
+h2:hover span {
+  color: #484848;
+  transform: rotate(10deg) translateX(40px) scale(1.5); /* Moves over and size bigger, different sizes = distortion */
+  font-size: 30px;
+  color: #999999;
+  display: inline-block;
+  -webkit-transition-property: -webkit-transform;
+  -webkit-transition-delay: 50ms;
+  /* Separate with commas for more */
+  transition-property: transform, color;
+  transition-duration: 0.2s, 0.1s;
+  transition-timing-function: ease-out, linear;
+  transition-delay: 50ms; /*If delay included, duration must be too, and declared before */
+  -webkit-animation-name: appearDisappear;
+  animation-name: appearDisappear;
+  animation-duration: 300ms; /*How long your defined transition will last */
+  animation-timing-function: linear; /*determines how the animation will progress*/
+  /* transition: transform 0.2s ease-out 50ms; specify multiple transitions with their properties together separated by a comma, or use all*/
+}
+
+/* transform: skew(15deg, 4deg); Along the x and y, all if only x specified*/
+
+/* transform-origin: 10% 10%; Visible change since not center aka 50% 50% */
+
+/* Be careful about order, as it will affect the changes on which axis it uses */
+
+/* Mimicking
+.translate {
+    position: relative;
+    top: 200px;
+    left: 200px;
+}
+bc unsupported in IE9 before version 9 */
+
+/* Transitions aka animations*/
+
+/* 
+- Declare original state of element 
+- Declare final state (ex: hover)
+- Add transition-property , transition-duration , transition-timing-function , and transition-delay 
+*/
+/* Webkit still needed for iOS6.1, BlackBerry10, Android 4.3 and UC Browser for Android */
+
+/* transition-property - defines which properties should be transformed, and must have a midpoint, like color or border width */
+
+/* transition-timing-function - defines how fast or slow transition should be */
+
+/* Default ease has a slow start, then it speeds up, and ends slowly
+/* ease-in-out is similar to ease , but accelerates more sharply at the beginning
+/* linear creates a transition that animates at a constant speed 
+/* ease-in creates a transition that is slow to start but gains speed, then stops abruptly
+/* The opposite, ease-out , starts at full speed, then slows progressively as it reaches the conclusion of the transition. */
+
+/* cubic-bezier(0, 0, 1, 1) - another option, but involves math */
+/* steps function - divide transition over equal steps, define steps and direction of start or end */
+
+/* transition-delay - introduce a delay before transition so accidental focusing doesn't happen */
+/* Negative delay starts immediately but halfway through animation, way back jump 75% of the way through the transition, and then transition back to the default state */
+
+/* Ends when transitionend event happens, once for each transition, won't fire if moused away before event done */
+
+
+/* Animations */
+
+
+/* These define the animation, you need to declare this rule in the actual CSS property block for the element */
+/* keyterms― from and to ―which evaluate to 0% and 100% respectively. These values specify how far along the animation each keyframe is located. */
+@-webkit-keyframes myAnimation { 
+    /* put animation keyframes here */
+}
+@keyframes myAnimation { 
+    /* put animation keyframes here */
+}
+
+@keyframes moveRight { 
+    from {
+    transform: translateX(-50%);
+    }
+    to {
+    transform: translateX(50%);
+    }
+}
+@keyframes appearDisappear { 
+    0%, 100% { /*start out 0 opacity, end at 0 opacity*/
+    opacity: 0;
+    }
+    20%, 80% { /*fade in by 20%, fade out by 80%*/
+    opacity: 1;
+    }
+}
+@keyframes bgMove {
+    100% {
+    background-position: 120% 0;
+    }
+}
+
+/* animation-timing-function: steps(4, end); start is with 0 to 75, end is with 25 to 100*/
+/* animation-iteration-count: infinite; or use numbers*/
+
+/* animation-direction: reverse, alternate (intial goes 0-100, 2nd and all evens go reverse), alternate-reverse is the opposite */
+/* animation-fill-mode: defines what happens before the first animation iteration begins and after the last animation iteration concludes */
+/* backwards: sit with 1st keyframe through delay, forwards: sit with last keyframe and override original property values, or both */
+/* animation-play-state - defines whether running or paused */
+
+.verbose {
+    animation-name: appearDisappear; 
+    animation-duration: 300ms; 
+    animation-timing-function: ease-in;
+    animation-iteration-count: 1;
+    animation-direction: alternate;
+    animation-delay: 5s;
+    animation-fill-mode: backwards;
+    animation-play-state: running;
+}
+/* shorthand */
+/* Avoid using animation property key terms to name your animation */
+.concise {
+    animation: 300ms ease-in alternate 5s backwards appearDisappear;
+}
+
+.target {
+    animation: 
+    animationOne 300ms ease-in backwards, 
+    animationTwo 600ms ease-out 1s forwards;
+}
+
+
+/* @keyframes bike {
+    0% {
+    background-position: 0 0;
+    }
+    100% {
+    background-position: -360px 0;
+    }
+}
+@keyframes move {
+    0% {
+    transform: translateX(-100px);
+    }
+    100% {
+    transform: translateX(100px);
+    }
+}  
+    
+h1:after {
+    content: '';
+    width: 90px;
+    height: 92px;
+    background-image: url(../images/bike_sprite.png);
+    display: block;
+    margin: auto;
+    animation: 
+        Animates the pedals and moves animated bicycle across
+        0.4s steps(4, end) infinite 50ms bike,
+        8s linear infinite 50ms move;
+    animation-play-state: paused;
+}
+h1:hover:after {
+    animation-play-state: running;
+} */
+
+
+
+
+/* Chapter 12: Canvas, SVG, and Drag and Drop */
+
+/* Canvas - Chrome 4+
+Firefox 2+
+Opera 9.6+
+Safari 3.1+
+iOS 3.2+
+Internet Explorer 9.0+
+Android 3.0+ */
+
+.myCanvas {
+    border: dotted 2px black;
+}
+
