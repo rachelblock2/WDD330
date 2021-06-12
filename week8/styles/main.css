@@ -186,3 +186,12 @@ Android 3.0+ */
     border: dotted 2px black;
 }
 
+.spin {
+    position: absolute;
+    top: 8px;
+    left: 55px;
+}
+
+.draganddrop .mc {
+    text-align: center; 
+}

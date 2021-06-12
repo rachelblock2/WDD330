@@ -1,28 +1,95 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Week 8 Notes/Code Examples</title>
-    <link rel="stylesheet" href="styles/main.css">
-</head>
-<body>
+    <link rel="stylesheet" href="styles/main.css" />
+  </head>
+  <body>
     <header>
-        <h1>Week 8 Notes/Code Examples</h1>
-        <nav>
-          <ul></ul>
-        </nav>
+      <h1>Week 8 Notes/Code Examples</h1>
+      <nav>
+        <ul></ul>
+      </nav>
     </header>
     <main>
-        <h2>Put your <span>dukes</span> up, sire</h2>
-        <canvas id="myCanvas" class="myCanvas" width="200" height="200"> <!--Set in HTML to determine canvas coords, CSS will just create/resize the container for it-->
-            Sorry! Your browser doesn’t support Canvas.
+      <h2>Put your <span>dukes</span> up, sire</h2>
+      <canvas id="myCanvas1" class="myCanvas" width="200" height="200">
+        <!--Set in HTML to determine canvas coords, CSS will just create/resize the container for it-->
+        Sorry! Your browser doesn’t support Canvas.
+      </canvas>
+      <canvas id="myCanvas2" class="myCanvas" width="200" height="200">
+        Sorry! Your browser doesn’t support Canvas.
+      </canvas>
+      <canvas id="myCanvas3" class="myCanvas" width="200" height="200">
+        Sorry! Your browser doesn’t support Canvas.
+      </canvas>
+      <canvas id="myCanvas4" class="myCanvas" width="200" height="200">
+        Sorry! Your browser doesn’t support Canvas.
+      </canvas>
+      <canvas id="myCanvas5" class="myCanvas" width="200" height="200">
+        Sorry! Your browser doesn’t support Canvas.
+      </canvas>
+      <button name="saveButton" id="saveButton">Save Drawing</button>
+
+      <h2>Demo 6: Drawing an image to the canvas</h2>
+      <canvas width="200" height="200" id="myCanvas6" class="myCanvas">
+        Sorry! Your browser doesn't support Canvas.
+      </canvas>
+      <img
+        data-src="https://learnable-static.s3.amazonaws.com/premium/reeedr/books/html5-css3-for-the-real-world-2nd-edition/images/html5-logo.png"
+        id="myImageElem"/>
+    
+      <canvas width="200" height="200" id="myCanvas7" class="myCanvas">
+        Sorry! Your browser doesn't support Canvas.
         </canvas>
+      <img id="b&w"src="../week6/images/canvas_demo_image.jpg" alt="demo_image">
+
+
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400"> <!--starting coords, width, height-->
+        <circle cx="50" cy="50" r="25" fill="red"/> <!--circle - center coords, radius, fill-->
+      </svg>
+
+      <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 400 400">
+        <desc>Drawing a rectangle</desc>
+            <rect x="10" y="10" width="100" height="100"  
+            fill="blue" stroke="red" stroke-width="3"  /> 
+      </svg>
+      <!-- To make more complicated shapes, use Inkscape instead -->
+      <!-- Openclipart - free images -->
+      <!-- Raphaël’s Container - open-source js library for drawing and animating SVG easier -->
+      <article class="ad-ad4">
+        <div id="mapDiv">        
+        <h1 id="geoHeading">Where in the world are you?</h1>
+        <form id="geoForm">
+            <input type="button" id="geobutton" value="Tell us!">
+        </form>    
+        <div class="spin" id="spinner"></div> 
+        </div>
+      </article>
+
+      <article id="ac3">
+        <h1>Wai-Aria? HAHA!</h1>
+        <h2 id="catHeading">Form Accessibility</h2>
+                
+        <img id="cat" data-src="https://learnable-static.s3.amazonaws.com/premium/reeedr/books/html5-css3-for-the-real-world-2nd-edition/images/cat.png" alt="WAI-ARIA Cat">
+                
+        <div class="content">
+        <p id="mouseContainer" class="mc">
+            <img data-src="https://learnable-static.s3.amazonaws.com/premium/reeedr/books/html5-css3-for-the-real-world-2nd-edition/images/computer-mouse-pic.svg" 
+            alt="mouse treat" id="mouse1" draggable="true"> <!--not boolean, have to set to true-->
+            <img data-src="https://learnable-static.s3.amazonaws.com/premium/reeedr/books/html5-css3-for-the-real-world-2nd-edition/images/computer-mouse-pic.svg"  
+            alt="mouse treat" id="mouse2" draggable="true">
+            <img data-src="https://learnable-static.s3.amazonaws.com/premium/reeedr/books/html5-css3-for-the-real-world-2nd-edition/images/computer-mouse-pic.svg" 
+            alt="mouse treat" id="mouse3" draggable="true">
+        </p>
+    </article>
+
     </main>
-    <footer> 
-    </footer>
+    <footer></footer>
     <script src="scripts/main.js"></script>
     <script src="../week1/scripts/navLinks.js"></script>
-</body>
+  </body>
 </html>
