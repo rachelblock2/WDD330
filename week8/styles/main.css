@@ -3,29 +3,30 @@
 /* Transform - translate, rotate, scale, and/or skew */
 /* Translate - move elements left, right, up, or down w/o disturbing flow of document */
 /* transform: translate(45px, -45px); */
+/* Scale changes size */
 /* -webkit-transform: translate(45px,-45px); /* iOS8, Android 
 ↵4.4.3, BB10 */
 /* -ms-transform: translate(45px,-45px); IE9 only */
 
 /* No transforming flow, so use height, width, or font size if you want. This will alter space allocated for element.*/
 h2:hover span {
+  /* -webkit-transition-property: -webkit-transform;
+  -webkit-transition-delay: 50ms; */
   color: #484848;
   transform: rotate(10deg) translateX(40px) scale(1.5); /* Moves over and size bigger, different sizes = distortion */
   font-size: 30px;
   color: #999999;
   display: inline-block;
-  -webkit-transition-property: -webkit-transform;
-  -webkit-transition-delay: 50ms;
   /* Separate with commas for more */
-  transition-property: transform, color;
+  /* transition-property: transform, color;
   transition-duration: 0.2s, 0.1s;
   transition-timing-function: ease-out, linear;
-  transition-delay: 50ms; /*If delay included, duration must be too, and declared before */
+  transition-delay: 50ms; If delay included, duration must be too, and declared before */
   -webkit-animation-name: appearDisappear;
   animation-name: appearDisappear;
   animation-duration: 300ms; /*How long your defined transition will last */
   animation-timing-function: linear; /*determines how the animation will progress*/
-  /* transition: transform 0.2s ease-out 50ms; specify multiple transitions with their properties together separated by a comma, or use all*/
+  transition: transform 0.2s ease-out 50ms; /*specify multiple transitions with their properties together separated by a comma, or use all */
 }
 
 /* transform: skew(15deg, 4deg); Along the x and y, all if only x specified*/
@@ -69,39 +70,41 @@ bc unsupported in IE9 before version 9 */
 
 /* Ends when transitionend event happens, once for each transition, won't fire if moused away before event done */
 
-
 /* Animations */
-
 
 /* These define the animation, you need to declare this rule in the actual CSS property block for the element */
 /* keyterms― from and to ―which evaluate to 0% and 100% respectively. These values specify how far along the animation each keyframe is located. */
-@-webkit-keyframes myAnimation { 
-    /* put animation keyframes here */
+@-webkit-keyframes myAnimation {
+  /* put animation keyframes here */
 }
-@keyframes myAnimation { 
-    /* put animation keyframes here */
+@keyframes myAnimation {
+  /* put animation keyframes here */
 }
 
-@keyframes moveRight { 
-    from {
+@keyframes moveRight {
+  from {
     transform: translateX(-50%);
-    }
-    to {
+  }
+  to {
     transform: translateX(50%);
-    }
+  }
 }
-@keyframes appearDisappear { 
-    0%, 100% { /*start out 0 opacity, end at 0 opacity*/
+@keyframes appearDisappear {
+  0%,
+  100% {
+    /*start out 0 opacity, end at 0 opacity*/
     opacity: 0;
-    }
-    20%, 80% { /*fade in by 20%, fade out by 80%*/
+  }
+  20%,
+  80% {
+    /*fade in by 20%, fade out by 80%*/
     opacity: 1;
-    }
+  }
 }
 @keyframes bgMove {
-    100% {
+  100% {
     background-position: 120% 0;
-    }
+  }
 }
 
 /* animation-timing-function: steps(4, end); start is with 0 to 75, end is with 25 to 100*/
@@ -113,27 +116,25 @@ bc unsupported in IE9 before version 9 */
 /* animation-play-state - defines whether running or paused */
 
 .verbose {
-    animation-name: appearDisappear; 
-    animation-duration: 300ms; 
-    animation-timing-function: ease-in;
-    animation-iteration-count: 1;
-    animation-direction: alternate;
-    animation-delay: 5s;
-    animation-fill-mode: backwards;
-    animation-play-state: running;
+  animation-name: appearDisappear;
+  animation-duration: 300ms;
+  animation-timing-function: ease-in;
+  animation-iteration-count: 1;
+  animation-direction: alternate;
+  animation-delay: 5s;
+  animation-fill-mode: backwards;
+  animation-play-state: running;
 }
 /* shorthand */
 /* Avoid using animation property key terms to name your animation */
 .concise {
-    animation: 300ms ease-in alternate 5s backwards appearDisappear;
+  animation: 300ms ease-in alternate 5s backwards appearDisappear;
 }
 
 .target {
-    animation: 
-    animationOne 300ms ease-in backwards, 
+  animation: animationOne 300ms ease-in backwards,
     animationTwo 600ms ease-out 1s forwards;
 }
-
 
 /* @keyframes bike {
     0% {
@@ -169,9 +170,6 @@ h1:hover:after {
     animation-play-state: running;
 } */
 
-
-
-
 /* Chapter 12: Canvas, SVG, and Drag and Drop */
 
 /* Canvas - Chrome 4+
@@ -183,15 +181,15 @@ Internet Explorer 9.0+
 Android 3.0+ */
 
 .myCanvas {
-    border: dotted 2px black;
+  border: dotted 2px black;
 }
 
 .spin {
-    position: absolute;
-    top: 8px;
-    left: 55px;
+  position: absolute;
+  top: 8px;
+  left: 55px;
 }
 
 .draganddrop .mc {
-    text-align: center; 
+  text-align: center;
 }
