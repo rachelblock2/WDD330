@@ -29,9 +29,27 @@ function getUrl(url) {
             }
 
             jsonData.results.forEach((person) => {
-                list.innerHTML += `<li>${person.name}</li>`;
-                getDetail(person); //Doesn't work, need the list item, but the list item doesn't have the JSON data
+                list.innerHTML += `<li data-id="${person.name}">${person.name}</li>`;
+                // getDetail(person); //Doesn't work, need the list item, but the list item doesn't have the JSON data
             });
+
+            // let peopleNames = document.querySelectorAll('#fetchUl li');
+
+            // peopleNames.forEach(
+            //     personName => {
+            //         personName.addEventListener('touchend', (e) => {
+            //             let selectedlistitem = e.target.dataset.id; //Select list item id that was clicked
+            //             let selectedListObject = jsonData.findIndex(person => person.name === parseInt(selectedlistitem)); //Find the index of the selected id in the list of task objects
+            //             // let main = document.querySelector('main');
+            //             // let description = document.createElement('p');
+            //             // main.append(description);
+            //             // console.log(selectedlistitem);
+            //             //         for (let key of Object.keys(person)) {
+            //             //             console.log('hi');
+            //             //             description.textContent += person[key];
+            //         });
+            //     }
+            // );
 
         });
 }
@@ -44,15 +62,32 @@ document.querySelector('#prev').addEventListener('touchend', () => {
     getUrl(prev);
 })
 
-function getDetail(person) {
-    person.addEventListener('touchend', () => {
-        let main = document.querySelector('main');
-        let description = document.createElement('p');
-        main.append(description);
-        console.log(person.name);
-        for (let key of Object.keys(person)) {
-            console.log('hi');
-            description.textContent += person[key];
-        }
-    })
-}
+// function getDetail(person) {
+//     let peopleNames = document.querySelectorAll('#fetchUl li');
+
+//     peopleNames.forEach(
+//         personName => {
+//             personName.addEventListener('touchend', (e) => {
+//                 let selectedlistitem = e.target.dataset.id; //Select list item id that was clicked
+//                 let selectedListObject = toDoList.findIndex(todo => todo.Id === parseInt(selectedId)); //Find the index of the selected id in the list of task objects
+//                 toDoList.splice(selectedTask, 1); //Remove that object
+
+//                 displayTasks(toDoList);
+//                 localStorage.setItem('Tasks', JSON.stringify(toDoList));
+//             });
+//         }
+//     );
+
+
+
+//     person.addEventListener('touchend', () => {
+//         let main = document.querySelector('main');
+//         let description = document.createElement('p');
+//         main.append(description);
+//         console.log(person.name);
+//         for (let key of Object.keys(person)) {
+//             console.log('hi');
+//             description.textContent += person[key];
+//         }
+//     })
+// }
