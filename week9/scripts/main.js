@@ -175,3 +175,237 @@ const id = requestAnimationFrame(rotate); //starts the rotation
 
 // cancelAnimationFrame(id); unique id is returned from call above so it can be cancelled
 // Or just use css animations 
+
+
+// Chapter 14: HTML5 APIs
+
+// data- attribute
+// Embeds data in web page, uses custom attributes that are ignored by browser, private to a page, so only used by js
+// data-, lowercase letters, numbers, hyphens, dots, colons or underscores, optional string value
+
+// Could filter through all attributes and values, can use getAttribute for older browsers
+// data-powers = 'flight superSpeed'
+// data-rating = '5' 
+// data-dropdown 
+// data-user = 'DAZ' 
+// data-max-length = '32'
+
+const superman = document.getElementById('hero');
+const powers = superman.dataset.powers;
+// 'flight superSpeed'
+
+// data-max-length = dataset.maxLength
+
+// Conversion into a number
+// const maxLength = Number(element.dataset.maxLength);
+
+// Web Storage API - key/value storage, fewer restrictions, more storage capacity, and is generally easier to use
+// Info not shared with server on every request
+// Info available in multiple windows of browser if domain is same
+// Data does not automatically expire like cookies do
+
+// localStorage.name = 'Heisenberg'; 
+// console.log(localStorage.name); 
+// "Heisenberg";
+
+// localStorage.removeItem('name');
+// delete localStorage.name;
+// localStorage.clear();
+
+// Won't work locally, needs a server
+// addEventListener('storage', (event) => {
+//     console.log(`The ${event.key} was updated from ${event.oldValue} to ${event.newValue} and saved in 
+//     ${event.storageArea}`) }, false);
+
+// Geolocation, user must share permission
+
+navigator.geolocation.getCurrentPosition(youAreHere); //returns "position" object to youAreHere()
+// coords prop with lat and lang props
+
+function youAreHere(position) {
+    console.log(`Latitude: ${position.coords.latitude}, Longitude: ${position.coords.longitude}`); 
+}
+
+// position properties
+// position.speed returns ground speed of device in mtrs/s
+// position.altitude property returns an estimate of the device’s altitude in meters above theWGS84ellipsoid, which is a standard measurement for the center of the Earth.
+//  position.heading property returns the direction the device is moving in. This is measured as a bearing in degrees, clockwise from North.
+// position.timestamp property returns the time that the position information was recorded.
+
+// Calculate accuracy of measurements
+// position.accuracy returns acc. of lat and long in meters, lower value the better
+// Use position.altitudeAccuracy for altitude accuracy
+
+// When device moves, position updated with this
+// const id = navigator.geolocation.watchPosition(youAreHere); returns an ID, can use clearWatch(id) to stop it
+
+
+// Web Workers - allow processes to run in background
+// const worker = new Worker('task.js'); normally can't be a local file, internet file needed? Or relative path?
+// Downloaded async, starts once downloaded
+// Uses messages to communicate between worker and main script
+
+// worker.postMessage('Hello'); //post message to worker from main
+// self.postMessage('Finished') //post message to main from worker
+
+// Log data from the worker to main's console
+// worker.addEventListener('message', (event) => {
+//     console.log(event.data); //data stored in data prop of event object 'message'
+// }, false);
+
+// worker.terminate(); //used inside main
+// self.close(); //used inside worker
+
+// Factorizes form and changes background color
+const btn = document.getElementById('rainbow');
+const rainbow = ['red','orange','yellow','green','blue','rebeccapurple','violet'];
+function change() {      
+    document.body.style.background = rainbow[Math.floor(7*
+    Math.random())]; //gets the lower integer of 7 * floating point number
+}
+btn.addEventListener('click', change);
+
+
+const form = document.forms[0];
+form.addEventListener('submit', factorize, false);
+function factorize(event) {
+    // prevent the form from being submitted
+    event.preventDefault();   
+    document.getElementById('output').innerHTML = '<p>This could take a while ...</p>';
+    const number = Number(form.number.value);
+    if(window.Worker) { //are web workers supported?
+        const worker = new Worker('scripts/factors.js');
+        worker.postMessage(number);
+        worker.addEventListener('message', (event) => {
+        document.getElementById('output').innerHTML = event.data; //inserts data from web worker into the HTML that calc is finished
+        }, false);
+    }
+}
+
+// Dedicated Web Workers = worker only works with script that loaded it, vs Shared Web Workers = allow lots of different scripts on same domain to access same worker object
+
+// Service Workers - allows for worker to run in background, and also intercept network requests
+// Basically app-like offline experience
+// Allow access to push notifs and background syncing
+// Requires secure network on HTTPS
+
+
+
+// WebSocket - a protocol that allows two-way communication with a server, aka connection is kept open, responses are pushed to client as soon as they are received
+
+
+// Code Example: Echo Chamber
+
+// const URL = 'wss://echo.websocket.org/'; //secure protocol by websockets instead of HTTP
+// const outputDiv = document.getElementById('output');
+// const form = document.forms[0];
+// const connection = new WebSocket(URL); //stores reference to websocket object, creates instance when run and tries to connect to url
+// Successful = event "open" fired
+
+// connection.addEventListener('open', () => {
+//     output('CONNECTED');
+// }, false);
+
+// Creates a constant stream of messages in the div
+// function output(message) {
+//     const para = document.createElement('p');
+//     para.innerHTML = message;
+//     outputDiv.appendChild(para);
+// }
+
+// Adding messages
+// form.addEventListener('submit', message, false);
+
+// function message(event) {
+//     event.preventDefault();
+//     const text = form.message.value;
+//     output(`SENT: ${text}`);
+//     connection.send(text); //sends message to url, receives, processes, sends response back, when response is received, message event fires
+// }
+
+// connection.addEventListener('message', (event) => {
+//     output(`RESPONSE: ${event.data}`);
+// }, false);
+
+// close event fires when connection closed, error when error occurs
+// connection.addEventListener('close', () => {
+//     output('DISCONNECTED');
+// }, false);
+
+// connection.addEventListener('error', (event) => {
+// output(`<span style='color: red;'>ERROR: ${event.data}</span>`);
+// }, false);
+
+
+
+// Notifications - allows you to show messages using the system's notifications, usually a popup
+// Get permission first
+if(window.Notification) {
+    Notification.requestPermission()
+    .then((permission) => {
+        if(Notification.permission === 'granted') {
+        new Notification('Hello JavaScript!'); //1st param is title, 2nd is object of options
+        }
+    });
+}
+
+// const notification = new Notification('JavaScript: Novice to Ninja',{
+//     body: 'The new book from SitePoint', //any text below title
+//     icon: 'sitepointlogo.png' //image link
+// });
+
+// notification.close();
+// notif events: click, show, close
+
+// notification.addEventListener('click', () => {
+//     window.open('https://sitepoint.com')
+//     }, false);
+
+
+
+// Multimedia
+
+// const video = document.getElementsByTagName('video')[0];
+// video.play(),.pause(), .volume(), .muted() (boolean), .currentTime() += 10 aka jump 10 sec forward
+// video.playbackRate() (fast forward or rewind by speed change), .loop (boolean), .duration() (how long of clip)
+
+// fires once metadata loaded so props are available
+// video.addEventListener('loadedmetadata', () => { console.log(video.duration); });
+
+// Audio and Video events - play, fires at start + after resume
+// pause
+// volumechange
+// loadmetadata, fires when all metadata loaded
+
+
+// Canvas Review
+const canvasElement = document.getElementById('canvas');
+const context = canvasElement.getContext('2d');
+context.fillStyle = "#0000cc"; // a blue fill color 
+context.strokeStyle = "#ccc"; // a gray stroke color
+
+context.beginPath();
+context.moveTo(130, 50);
+context.lineTo(180, 50);
+context.moveTo(155, 50);
+context.lineTo(155, 90);
+context.strokeStyle = '#c00';
+context.lineWidth = 15;
+context.stroke();
+
+context.beginPath();
+context.arc(200, 200, 30, 0, Math.PI * 2, false);
+context.strokeStyle = '#ff0';
+context.lineWidth = 4;
+context.stroke();
+
+context.fillStyle = '#0c0'; // a blue fill color
+context.font = 'bold 26px sans-serif';
+context.fillText('Hello', 20, 200);
+
+// Be careful with newer APIs and security concerns
+
+// Shims and Polyfills - for when the user doesn't have the most up to date browser
+// Libraries of code that allow for usual use of API
+// Shim = piece of code that adds some missing functionality to a browser, implemented slightly different
+// Polyfill = shim that acheives same functionality, while also using the normal API commands as if they were supported
