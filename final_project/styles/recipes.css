@@ -58,6 +58,11 @@ input[type="text"]:invalid {
     border: 3px solid #f58b00;
 }
 
+#addNewIngredient:active {
+    background-color: #f58b00;
+    color: #ffffff;
+}
+
 footer button {
     display: block;
     margin: 2rem auto;
