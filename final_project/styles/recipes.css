@@ -1,0 +1,76 @@
+* {
+    font-size: 16px;
+    margin: 0;
+    font-family: 'Cabin', sans-serif;
+}
+
+h1, label {
+    font-weight: 400;
+    font-size: 1.4rem;
+}
+
+h1 {
+    margin: 7rem 1rem 3rem;
+}
+
+
+section {
+    margin: 1rem;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+}
+
+label {
+    margin: 60% 0 0;
+    text-align: center;
+}
+
+div {
+    padding: 2rem;
+}
+
+span {
+    color: rgb(124, 124, 124);
+}
+
+input[type="text"] {
+    margin: 1rem 0 0;
+    padding: 0.3rem 0.4rem;
+    width: 75%;
+    border: 3px solid #f58b00;
+    border-radius: 3px;
+}
+
+input[type="text"]:focus {
+    border: 3px solid #fff099;
+}
+
+input[type="text"]:invalid {
+    background-color: #fff099;
+}
+
+#addNewIngredient {
+    font-size: 1.4rem;
+    padding: 0 0.7rem 0.25rem;
+    border-radius: 3px;
+    background-color: #ffffff;
+    border: 3px solid #f58b00;
+}
+
+footer button {
+    display: block;
+    margin: 2rem auto;
+    padding: 1rem;
+    width: 75%;
+    border-radius: 10rem;
+    background-color: #f58b00;
+    color: #ffffff;
+    font-size: 1rem;
+    border-width: 3px;
+}
+
+footer button:active {
+    color: #f58b00;
+    background-color: #ffffff;
+}
