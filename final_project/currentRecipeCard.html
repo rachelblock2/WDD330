@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Recipe Card</title>
+    <title>Current Recipe</title>
     <link rel="stylesheet" href="styles/recipes.css" />
     <link rel="preconnect" href="https://fonts.gstatic.com" />
     <link href="https://fonts.googleapis.com/css2?family=Cabin:wght@400;700&family=Playfair+Display:ital,wght@0,400;0,800;1,400;1,700&display=swap" rel="stylesheet"/>
@@ -13,9 +13,8 @@
     <img id="background" src="images/food_background.jpg" alt="small_background">
     <header>
         <a class="goHome" href="recipesHome.html">&lt; Back to recipe list</a>
-      <h1></h1>
     </header>
-    <main id="cardMain">
+    <main id="currentCardMain">
       <section id="recipeCardHolder">
         <h2></h2>
         <h3></h3>
@@ -23,7 +22,7 @@
       </section>
       <section>
         <ul id="displayIngredients"></ul>
-        <p id="instructions">Instructions: </p>
+        <p id="instructions"></p>
         <label for="recipeIngredient">Add Extra Ingredients:
           <input type="text" name="recipeIngredient" id="recipeIngredient" placeholder="Pasta" required minlength="1" pattern="[A-Za-z0-9]">
         </label>

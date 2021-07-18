@@ -14,14 +14,14 @@
     <header>
         <a class="goHome" href="recipesHome.html">&lt; Back to recipe list</a>
     </header>
-    <main id="instructionMain">
+    <main id="imgAddMain">
       <section>
-        <label for="recipeTitle">What are the instructions for this recipe?
-            <textarea rows="5" cols="40" id="recipeInstructions" name="recipeInstructions" placeholder="Preheat oven at 350 degrees" required minlength="1" pattern="[A-Za-z]{1,*}"></textarea>
+        <label for="recipeImg">What are the instructions for this recipe?
+            <input type="file" name="recipeImg" id="recipeImg" accept="images/*">
           </label>
         </section>
         <section>
-          <a id="nextAddImg" href="recipeImage.html">Next: Add a Recipe Image</a>
+          <a id="nextShowRecipe" href="recipeCard.html">Show the recipe</a>
         </section>
     </main>
     <footer>

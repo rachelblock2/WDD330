@@ -4,26 +4,33 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Recipe Folder Ingredients</title>
+    <title>Recipe Ingredients</title>
     <link rel="stylesheet" href="styles/recipes.css" />
     <link rel="preconnect" href="https://fonts.gstatic.com" />
     <link href="https://fonts.googleapis.com/css2?family=Cabin:wght@400;700&family=Playfair+Display:ital,wght@0,400;0,800;1,400;1,700&display=swap" rel="stylesheet"/>
   </head>
   <body>
+    <img id="background" src="images/food_background.jpg" alt="small_background">
     <header>
+      <a class="goHome" href="recipesHome.html">&lt; Back to recipe list</a>
     </header>
-    <main>
+    <main id="ingredientMain">
       <section>
-        <label for="recipeTitle">What are the ingredients in this recipe?
-            <input type="text" name="recipeTitle" id="recipeTitle" placeholder="Pasta" required minlength="1" pattern="[A-Za-z]{1,*}">
-            <button id="addNewIngredient">+</button>
+        <ul id="displayIngredients"></ul>
+        <label for="recipeIngredient">What are the ingredients in this recipe?
+            <input type="text" name="recipeIngredient" id="recipeIngredient" placeholder="Pasta" required minlength="1" pattern="[A-Za-z0-9]">
+          </label>
+          <label for="ingredientAmount">How much of this ingredient is needed?
+            <input type="text" name="ingredientAmount" id="ingredientAmount" placeholder="2 cups" required minlength="1" pattern="[0-9A-Za-z]">
+            <button id="addNewIngredient">Add Ingredient to Recipe</button>
           </label>
         </section>
-    </main>
+        <section>
+        <a id="nextInstructions" href="recipeInstruction.html">Next: Add Instructions</a>
+        </section>
+      </main>
     <footer>
-      <button>Next: Add Instructions</button>
     </footer>
-
-    <script src="scripts/recipes.js"></script>
+    <script type="module" src="scripts/recipes.js"></script>
   </body>
 </html>

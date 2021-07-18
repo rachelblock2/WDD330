@@ -10,18 +10,25 @@
     <link href="https://fonts.googleapis.com/css2?family=Cabin:wght@400;700&family=Playfair+Display:ital,wght@0,400;0,800;1,400;1,700&display=swap" rel="stylesheet"/>
   </head>
   <body>
+    <img id="background" src="images/food_background.jpg" alt="small_background">
     <header>
+      <a class="goHome" href="recipesHome.html">&lt; Back to recipe list</a>
     </header>
-    <main>
+    <main id="titleMain">
       <section>
-        <label for="recipeTitle">What is the name of this recipe?</label>
-            <input type="text" name="recipeTitle" id="recipeTitle" placeholder="Spaghetti and Meatballs" required minlength="1" pattern="[A-Za-z]{1,*}">
+        <label for="recipeTitle">What is the name of this recipe?
+            <input type="text" name="recipeTitle" id="recipeTitle" placeholder="Spaghetti and Meatballs" required minlength="1" pattern="[A-Za-z]">
+        </label>
+        <label for="recipeSide">Any sides with this recipe (optional)?
+            <input type="text" name="recipeSide" id="recipeSide" placeholder="Steamed Broccoli" minlength="1" pattern="[A-Za-z]">
+        </label>
+    </section>
+    <section>
+      <a id="nextIngredients" href="recipeIngredient.html">Next: Add Ingredients</a>
     </section>
     </main>
     <footer>
-      <button>Next: Add Ingredients</button>
     </footer>
-
-    <script src="scripts/recipes.js"></script>
+    <script type="module" src="scripts/recipes.js"></script>
   </body>
 </html>

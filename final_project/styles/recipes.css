@@ -4,58 +4,216 @@
     font-family: 'Cabin', sans-serif;
 }
 
-h1, label {
-    font-weight: 400;
-    font-size: 1.4rem;
+#background {
+    min-height: 100%;
+    min-width: 965px;
+    width: 100%;
+    height: auto;
+    position: fixed;
+    top: 0px;
+    right: -339px;
+    z-index: -999;
+}
+
+main {
+    background-color: rgba(255,240,153, 0.4);
+    padding: 1rem 0rem;
+    border-radius: 1rem;
+}
+
+#homeMain {
+    margin: 0;
+    padding: 0;
+    background-color: transparent;
+}
+
+#titleMain {
+    margin: 40% 0.8rem 0;
+}
+
+#ingredientMain {
+    margin: 23% 0.8rem 0;
+}
+
+#instructionMain {
+    margin: 29% 0.8rem 0;
+}
+
+#cardMain {
+    margin: -6.5rem 0.8rem 0;
 }
 
 h1 {
-    margin: 7rem 1rem 3rem;
+    color: #ffffff;
+    margin: 6rem 1rem 2.5rem;
 }
 
+h1, label {
+    font-weight: 500;
+    font-size: 1.4rem;
+}
+
+h2, h3 {
+    font-family: 'Cabin', sans-serif;
+    text-align: center;
+    font-size: 2.3rem;
+    color: #ffffff;
+    font-weight: 700;
+    padding: 0 1rem;
+}
+
+h3 {
+    padding: 0 0 0.9rem;
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 1.5rem;
+    font-weight: 400;
+    letter-spacing: 0.2rem;
+}
+
+label {
+    color: #ffffff;
+    margin: 0;
+    text-align: center;
+}
+
+label:nth-child(2) {
+    margin-top: 1rem;
+    font-size: 1.1rem;
+}
+
+.goHome {
+    display: block;
+    text-decoration: none;
+    padding: 1.4rem;
+    font-size: 1.1rem;
+    color: #f58b00;
+}
+
+#recipeImg {
+    width: 86%;
+    margin: 0 auto;
+}
+
+.imgHolder {
+    width: 100%;
+    z-index: -998;
+    margin: 0.3rem 0 1.3rem;
+    display: flex;
+}
+
+.imageLink {
+    display: block;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    border-radius: 0;
+    background-color: transparent;
+    text-align: center;
+    text-decoration: none;
+    border: none;
+}
+
+.miniCardImg {
+    width: 100%;
+    margin: auto;
+}
+
+.hideMiniCard {
+    display: none;
+}
+
+#previousRecipe, #nextRecipe {
+    border: none;
+    background-color: white;
+    border-radius: 0.2rem;
+    color: #f58b00;
+    font-size: 1.5rem;
+    align-self: center;
+    min-height: 80px;
+}
 
 section {
-    margin: 1rem;
+    margin: 0.8rem 1rem;
     display: flex;
     justify-content: space-between;
     flex-direction: column;
 }
 
-label {
-    margin: 60% 0 0;
-    text-align: center;
+#cardCarousel {
+    margin: 0 1rem;
 }
 
-div {
-    padding: 2rem;
+#cardCarousel, #addExtraIngredients {
+    flex-direction: row;
 }
+
+#cardHolder {
+    margin: 0.5rem;
+    padding: 1rem;
+    border-radius: 0.7rem;
+    width: 100%;
+    background-color: rgba(255,255,255, 0.3);
+}
+
 
 span {
-    color: rgb(124, 124, 124);
+    color: rgba(212, 212, 212, 0.842);
 }
 
-input[type="text"] {
-    margin: 1rem 0 0;
+section ul {
+    padding: 0 1.3rem;
+    display: flex;
+    flex-direction: column;
+}
+
+section ul li, section ul li span, section p {
+    list-style-type: none;
+    color: #ffffff;
+    font-size: 1.2rem;
+    margin: 0.5rem 0;
+}
+
+section ul li span {
+    display: block;
+    width: 50%;
+    float: left;
+}
+
+section p {
+    padding: 1.2rem;
+}
+
+input[type="text"], textarea {
+    margin: 1rem auto 0;
     padding: 0.3rem 0.4rem;
-    width: 75%;
+    width: 80%;
     border: 3px solid #f58b00;
     border-radius: 3px;
 }
 
-input[type="text"]:focus {
+input[type="text"]:focus, textarea:focus {
     border: 3px solid #fff099;
 }
 
-input[type="text"]:invalid {
+input[type="text"]:invalid, textarea:invalid {
     background-color: #fff099;
 }
 
+input[type=image] {
+    width: 26px;
+    margin: 0;
+    padding: 0 1rem;
+    float: right;
+}
+
 #addNewIngredient {
-    font-size: 1.4rem;
-    padding: 0 0.7rem 0.25rem;
-    border-radius: 3px;
+    font-size: 1.1rem;
+    padding: 0.5rem 1rem;
+    border-radius: 17px;
     background-color: #ffffff;
-    border: 3px solid #f58b00;
+    border: none;
+    margin: 1rem 0 0;
 }
 
 #addNewIngredient:active {
@@ -63,19 +221,31 @@ input[type="text"]:invalid {
     color: #ffffff;
 }
 
-footer button {
+textarea {
+    resize: none;
+}
+
+section a {
     display: block;
-    margin: 2rem auto;
+    margin: 1rem auto;
     padding: 1rem;
     width: 75%;
     border-radius: 10rem;
     background-color: #f58b00;
     color: #ffffff;
-    font-size: 1rem;
-    border-width: 3px;
+    font-size: 1.1rem;
+    text-align: center;
+    text-decoration: none;
+    border: 4px solid rgb(212, 212, 212);
 }
 
-footer button:active {
-    color: #f58b00;
+section #addNewRecipe {
+    background-color: transparent;
+    color: #ffffff;
+    border: 4px solid #f58b00;
+}
+section a:active {
     background-color: #ffffff;
+    color: #f58b00;
+    border: 4px solid #f58b00;
 }
