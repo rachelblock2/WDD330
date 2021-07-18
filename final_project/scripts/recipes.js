@@ -54,9 +54,9 @@ if (userIngredientInput) {
 function addIngredientstoRecipe(ingredientList) {
     let ingredient = new Ingredient(userIngredientInput.value, ingredientAmt.value); //Creates new ingredient
     ingredientList.push(ingredient);
-
+    
     let recipesList = JSON.parse(localStorage.getItem(`Recipes`));
-
+    
     recipesList.forEach(recipe => {
         if (recipe === recipesList[recipesList.length - 1]) { //Adds new ingredient and amount to last entered recipe
             recipe.IngredientList = ingredientList;
@@ -272,7 +272,7 @@ function addDeleteBtns(recipe) {
                 let selectedIngredient = recipe.IngredientList.findIndex(ingredient => ingredient.Id === parseInt(selectedId)); //Find the index of the selected id in the list of task objects
                 recipe.IngredientList.splice(selectedIngredient, 1); //Remove that object
 
-                showRecipeCard(recipesList);
+                showRecipeCard(recipesList, recipe);
                 localStorage.setItem('Recipes', JSON.stringify(recipesList));
             });
         }
