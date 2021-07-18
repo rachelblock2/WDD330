@@ -62,7 +62,7 @@ const links = [
     },
     {
     label: "Week9 Team Assignment",
-    url: "../week9/index.html"
+    url: "../week9/javascript30-drums/index-START.html"
     },
     {
     label: "Week10 Team Assignment",
