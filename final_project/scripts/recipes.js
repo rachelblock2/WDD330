@@ -116,7 +116,6 @@ if (currentCardDisplay) {
     showRecipeCard(recipesList, chosenRecipe);
     document.addEventListener('DOMContentLoaded', () => {
         if (chosenRecipe) {
-            console.log(chosenRecipe.RecipeImage);
             if (document.querySelector('#recipeImgDisplay')) {
                 document.querySelector('#recipeImgDisplay').setAttribute('src', chosenRecipe.RecipeImage);
             }
@@ -187,40 +186,51 @@ function showRecipeCard(recipesList, recipe) {
 };
 
 function showMiniRecipeCard(recipesList) {
-    document.querySelector('#cardHolder').innerHTML = '';
 
-    recipesList.forEach(
-        recipe => {
-            let card = document.createElement('div');
-            card.setAttribute('class', 'miniRecipeCard');
-            card.setAttribute('id', recipe.RecipeTitle);
-            
-            let cardImage = document.createElement('img');
-            cardImage.setAttribute('src', recipe.RecipeImage);
-            cardImage.setAttribute('class', 'miniCardImg');
+    if (recipesList != '') {
+        document.querySelector('#cardHolder').innerHTML = '';
 
-            let imgHolder = document.createElement('div');
-            imgHolder.setAttribute('class', 'imgHolder');
-            imgHolder.append(cardImage);
+        recipesList.forEach(
+            recipe => {
+                let card = document.createElement('div');
+                card.setAttribute('class', 'miniRecipeCard');
+                card.setAttribute('id', recipe.RecipeTitle);
+                
+                let cardImage = document.createElement('img');
+                cardImage.setAttribute('src', recipe.RecipeImage);
+                cardImage.setAttribute('class', 'miniCardImg');
 
-            let link = document.createElement('a');
-            link.setAttribute('href', 'currentRecipeCard.html');
-            link.setAttribute('class', 'imageLink');
-            link.append(imgHolder);
+                let imgHolder = document.createElement('div');
+                imgHolder.setAttribute('class', 'imgHolder');
+                imgHolder.append(cardImage);
 
-            let cardTitle = document.createElement('h2');
-            cardTitle.innerHTML = recipe.RecipeTitle;
+                let link = document.createElement('a');
+                link.setAttribute('href', 'currentRecipeCard.html');
+                link.setAttribute('class', 'imageLink');
+                link.append(imgHolder);
 
-            let cardRecipeSide = document.createElement('h3');
-            cardRecipeSide.innerHTML = `with ${recipe.SideDish}`;
+                let cardTitle = document.createElement('h2');
+                cardTitle.innerHTML = recipe.RecipeTitle;
 
-            card.append(link);
-            card.append(cardTitle);
-            card.append(cardRecipeSide);
+                let cardRecipeSide = document.createElement('h3');
+                cardRecipeSide.innerHTML = `with ${recipe.SideDish}`;
 
-            document.querySelector('#cardHolder').append(card);
-        }
-    );
+                let deleteRecipe = document.createElement('input');
+                deleteRecipe.setAttribute('type', 'image');
+                deleteRecipe.setAttribute('src', 'images/trash_png.png');
+                deleteRecipe.setAttribute('data-id', recipe.Id);
+                deleteRecipe.setAttribute('class', 'deleteRecipe');
+
+                card.append(link);
+                card.append(cardTitle);
+                card.append(cardRecipeSide);
+                card.append(deleteRecipe);
+
+                document.querySelector('#cardHolder').append(card);
+                addDeleteBtns(recipe);
+            }
+        );
+    };
 }
 
 function showFullRecipe (recipeDivs) {
@@ -264,20 +274,39 @@ function showIngredients(recipe) {
 
 function addDeleteBtns(recipe) {
     let deleteBtns = document.querySelectorAll('input[type="image"]');
-
+    
     deleteBtns.forEach(
         btn => {
             btn.addEventListener('touchend', (e) => {
                 let selectedId = e.target.dataset.id; //Select trash image id that was clicked
-                let selectedIngredient = recipe.IngredientList.findIndex(ingredient => ingredient.Id === parseInt(selectedId)); //Find the index of the selected id in the list of task objects
-                recipe.IngredientList.splice(selectedIngredient, 1); //Remove that object
+                console.log(selectedId);
+                
+                if (btn.className === 'deleteRecipe') { // Deletes a whole recipe off the home page
 
-                showRecipeCard(recipesList, recipe);
-                localStorage.setItem('Recipes', JSON.stringify(recipesList));
+                    let recipesList = JSON.parse(localStorage.getItem('Recipes'));
+                    let selectedRecipe = recipesList.findIndex(recipe => recipe.Id === parseInt(selectedId));
+                    console.log(selectedRecipe);
+
+                    recipesList.splice(selectedRecipe, 1);
+                    localStorage.setItem('Recipes', JSON.stringify(recipesList));
+                    console.log(recipesList);
+                    
+                    showMiniRecipeCard(recipesList);
+                    
+                } else { // Deletes a single ingredient from a chosen recipe
+
+                    let selectedIngredient = recipe.IngredientList.findIndex(ingredient => ingredient.Id === parseInt(selectedId)); //Find the index of the selected id in the list of task objects
+                    recipe.IngredientList.splice(selectedIngredient, 1); //Remove that object
+
+                    showRecipeCard(recipesList, recipe);
+                    localStorage.setItem('Recipes', JSON.stringify(recipesList));
+                }
             });
         }
     );
 }
+
+
 
 
 function switchRecipeCards(recipeDivs) {

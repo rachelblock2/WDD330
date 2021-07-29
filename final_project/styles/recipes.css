@@ -203,7 +203,7 @@ input[type="text"]:invalid, textarea:invalid {
 input[type=image] {
     width: 26px;
     margin: 0;
-    padding: 0 1rem;
+    padding: 0.2rem 0;
     float: right;
 }
 
