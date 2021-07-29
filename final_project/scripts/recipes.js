@@ -186,10 +186,10 @@ function showRecipeCard(recipesList, recipe) {
 };
 
 function showMiniRecipeCard(recipesList) {
+    console.log('here');
+    document.querySelector('#cardHolder').innerHTML = '';
 
     if (recipesList != '') {
-        document.querySelector('#cardHolder').innerHTML = '';
-
         recipesList.forEach(
             recipe => {
                 let card = document.createElement('div');
@@ -230,6 +230,10 @@ function showMiniRecipeCard(recipesList) {
                 addDeleteBtns(recipe);
             }
         );
+    } else {
+        let span = document.createElement('span');
+        span.textContent = 'No recipes saved';
+        document.querySelector('#cardHolder').append(span);
     };
 }
 
